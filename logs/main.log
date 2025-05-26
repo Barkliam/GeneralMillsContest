@@ -1,0 +1,2166 @@
+2025-05-26 12:16:09,132 INFO: Starting contest submission scheduler...
+2025-05-26 12:16:16,526 INFO: Scheduler stopped by user.
+2025-05-26 12:16:34,089 INFO: Starting contest submission scheduler...
+2025-05-26 12:16:34,089 INFO: Running scheduled form submission...
+2025-05-26 12:16:34,090 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 12:16:43,897 ERROR: Form submission failed: Message: Select only works on <select> elements, not on div
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 97, in submit_form
+    store_select = Select(find_element_endswith_id(driver, "PreferredStore"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/support/select.py", line 38, in __init__
+    raise UnexpectedTagNameException(f"Select only works on <select> elements, not on {webelement.tag_name}")
+selenium.common.exceptions.UnexpectedTagNameException: Message: Select only works on <select> elements, not on div
+
+2025-05-26 12:16:43,988 ERROR: Error during form submission: Message: Select only works on <select> elements, not on div
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 97, in submit_form
+    store_select = Select(find_element_endswith_id(driver, "PreferredStore"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/support/select.py", line 38, in __init__
+    raise UnexpectedTagNameException(f"Select only works on <select> elements, not on {webelement.tag_name}")
+selenium.common.exceptions.UnexpectedTagNameException: Message: Select only works on <select> elements, not on div
+
+2025-05-26 12:16:43,989 INFO: No scheduled jobs found. Exiting.
+2025-05-26 12:50:27,426 INFO: Starting contest submission scheduler...
+2025-05-26 12:50:27,426 INFO: Running scheduled form submission...
+2025-05-26 12:50:27,427 WARNING: No available address to use.
+2025-05-26 12:50:27,427 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 12:50:27,427 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 12:50:27,427 INFO: No scheduled jobs found. Exiting.
+2025-05-26 12:51:29,572 INFO: Starting contest submission scheduler...
+2025-05-26 12:51:29,572 INFO: Running scheduled form submission...
+2025-05-26 12:51:29,572 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 12:51:38,999 ERROR: Form submission failed: Message: invalid element state
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5632e4d2a71a <unknown>
+#1 0x5632e47ccef3 <unknown>
+#2 0x5632e4815012 <unknown>
+#3 0x5632e48443a2 <unknown>
+#4 0x5632e481251a <unknown>
+#5 0x5632e484456e <unknown>
+#6 0x5632e486a2a0 <unknown>
+#7 0x5632e4844173 <unknown>
+#8 0x5632e4810d4b <unknown>
+#9 0x5632e48119b1 <unknown>
+#10 0x5632e4cef8cb <unknown>
+#11 0x5632e4cf37ca <unknown>
+#12 0x5632e4cd7622 <unknown>
+#13 0x5632e4cf4354 <unknown>
+#14 0x5632e4cbc45f <unknown>
+#15 0x5632e4d184f8 <unknown>
+#16 0x5632e4d186d6 <unknown>
+#17 0x5632e4d29586 <unknown>
+#18 0x7fbfa4e51eda <unknown>
+#19 0x7fbfa4ed9ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 115, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 78, in select_preferred_store
+    input_el.clear()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 156, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidElementStateException: Message: invalid element state
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5632e4d2a71a <unknown>
+#1 0x5632e47ccef3 <unknown>
+#2 0x5632e4815012 <unknown>
+#3 0x5632e48443a2 <unknown>
+#4 0x5632e481251a <unknown>
+#5 0x5632e484456e <unknown>
+#6 0x5632e486a2a0 <unknown>
+#7 0x5632e4844173 <unknown>
+#8 0x5632e4810d4b <unknown>
+#9 0x5632e48119b1 <unknown>
+#10 0x5632e4cef8cb <unknown>
+#11 0x5632e4cf37ca <unknown>
+#12 0x5632e4cd7622 <unknown>
+#13 0x5632e4cf4354 <unknown>
+#14 0x5632e4cbc45f <unknown>
+#15 0x5632e4d184f8 <unknown>
+#16 0x5632e4d186d6 <unknown>
+#17 0x5632e4d29586 <unknown>
+#18 0x7fbfa4e51eda <unknown>
+#19 0x7fbfa4ed9ac4 clone
+
+2025-05-26 12:51:39,074 ERROR: Error during form submission: Message: invalid element state
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5632e4d2a71a <unknown>
+#1 0x5632e47ccef3 <unknown>
+#2 0x5632e4815012 <unknown>
+#3 0x5632e48443a2 <unknown>
+#4 0x5632e481251a <unknown>
+#5 0x5632e484456e <unknown>
+#6 0x5632e486a2a0 <unknown>
+#7 0x5632e4844173 <unknown>
+#8 0x5632e4810d4b <unknown>
+#9 0x5632e48119b1 <unknown>
+#10 0x5632e4cef8cb <unknown>
+#11 0x5632e4cf37ca <unknown>
+#12 0x5632e4cd7622 <unknown>
+#13 0x5632e4cf4354 <unknown>
+#14 0x5632e4cbc45f <unknown>
+#15 0x5632e4d184f8 <unknown>
+#16 0x5632e4d186d6 <unknown>
+#17 0x5632e4d29586 <unknown>
+#18 0x7fbfa4e51eda <unknown>
+#19 0x7fbfa4ed9ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 115, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 78, in select_preferred_store
+    input_el.clear()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 156, in clear
+    self._execute(Command.CLEAR_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidElementStateException: Message: invalid element state
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5632e4d2a71a <unknown>
+#1 0x5632e47ccef3 <unknown>
+#2 0x5632e4815012 <unknown>
+#3 0x5632e48443a2 <unknown>
+#4 0x5632e481251a <unknown>
+#5 0x5632e484456e <unknown>
+#6 0x5632e486a2a0 <unknown>
+#7 0x5632e4844173 <unknown>
+#8 0x5632e4810d4b <unknown>
+#9 0x5632e48119b1 <unknown>
+#10 0x5632e4cef8cb <unknown>
+#11 0x5632e4cf37ca <unknown>
+#12 0x5632e4cd7622 <unknown>
+#13 0x5632e4cf4354 <unknown>
+#14 0x5632e4cbc45f <unknown>
+#15 0x5632e4d184f8 <unknown>
+#16 0x5632e4d186d6 <unknown>
+#17 0x5632e4d29586 <unknown>
+#18 0x7fbfa4e51eda <unknown>
+#19 0x7fbfa4ed9ac4 clone
+
+2025-05-26 12:51:39,075 INFO: No scheduled jobs found. Exiting.
+2025-05-26 13:02:01,303 INFO: Starting contest submission scheduler...
+2025-05-26 13:02:01,303 INFO: Running scheduled form submission...
+2025-05-26 13:02:01,304 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 13:02:11,742 ERROR: Form submission failed: Failed to select the first store option: 'bytes' object has no attribute 'element_to_be_clickable'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 93, in select_preferred_store
+    EC.element_to_be_clickable((By.XPATH, first_option_xpath))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'element_to_be_clickable'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 123, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 97, in select_preferred_store
+    raise RuntimeError(f"Failed to select the first store option: {e}")
+RuntimeError: Failed to select the first store option: 'bytes' object has no attribute 'element_to_be_clickable'
+2025-05-26 13:02:11,822 ERROR: Error during form submission: Failed to select the first store option: 'bytes' object has no attribute 'element_to_be_clickable'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 93, in select_preferred_store
+    EC.element_to_be_clickable((By.XPATH, first_option_xpath))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'element_to_be_clickable'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 123, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 97, in select_preferred_store
+    raise RuntimeError(f"Failed to select the first store option: {e}")
+RuntimeError: Failed to select the first store option: 'bytes' object has no attribute 'element_to_be_clickable'
+2025-05-26 13:02:11,823 INFO: No scheduled jobs found. Exiting.
+2025-05-26 13:08:02,938 INFO: Starting contest submission scheduler...
+2025-05-26 13:08:02,938 INFO: Running scheduled form submission...
+2025-05-26 13:08:02,939 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 13:08:13,644 ERROR: Form submission failed: Message: element not interactable
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x555b9b03471a <unknown>
+#1 0x555b9aad6ef3 <unknown>
+#2 0x555b9ab22b9c <unknown>
+#3 0x555b9ab20de0 <unknown>
+#4 0x555b9ab4e3a2 <unknown>
+#5 0x555b9ab1c51a <unknown>
+#6 0x555b9ab4e56e <unknown>
+#7 0x555b9ab742a0 <unknown>
+#8 0x555b9ab4e173 <unknown>
+#9 0x555b9ab1ad4b <unknown>
+#10 0x555b9ab1b9b1 <unknown>
+#11 0x555b9aff98cb <unknown>
+#12 0x555b9affd7ca <unknown>
+#13 0x555b9afe1622 <unknown>
+#14 0x555b9affe354 <unknown>
+#15 0x555b9afc645f <unknown>
+#16 0x555b9b0224f8 <unknown>
+#17 0x555b9b0226d6 <unknown>
+#18 0x555b9b033586 <unknown>
+#19 0x7f7fb6a37eda <unknown>
+#20 0x7f7fb6abfac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 113, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 83, in select_preferred_store
+    input_el.send_keys(Keys.ARROW_DOWN)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 305, in send_keys
+    self._execute(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x555b9b03471a <unknown>
+#1 0x555b9aad6ef3 <unknown>
+#2 0x555b9ab22b9c <unknown>
+#3 0x555b9ab20de0 <unknown>
+#4 0x555b9ab4e3a2 <unknown>
+#5 0x555b9ab1c51a <unknown>
+#6 0x555b9ab4e56e <unknown>
+#7 0x555b9ab742a0 <unknown>
+#8 0x555b9ab4e173 <unknown>
+#9 0x555b9ab1ad4b <unknown>
+#10 0x555b9ab1b9b1 <unknown>
+#11 0x555b9aff98cb <unknown>
+#12 0x555b9affd7ca <unknown>
+#13 0x555b9afe1622 <unknown>
+#14 0x555b9affe354 <unknown>
+#15 0x555b9afc645f <unknown>
+#16 0x555b9b0224f8 <unknown>
+#17 0x555b9b0226d6 <unknown>
+#18 0x555b9b033586 <unknown>
+#19 0x7f7fb6a37eda <unknown>
+#20 0x7f7fb6abfac4 clone
+
+2025-05-26 13:08:13,713 ERROR: Error during form submission: Message: element not interactable
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x555b9b03471a <unknown>
+#1 0x555b9aad6ef3 <unknown>
+#2 0x555b9ab22b9c <unknown>
+#3 0x555b9ab20de0 <unknown>
+#4 0x555b9ab4e3a2 <unknown>
+#5 0x555b9ab1c51a <unknown>
+#6 0x555b9ab4e56e <unknown>
+#7 0x555b9ab742a0 <unknown>
+#8 0x555b9ab4e173 <unknown>
+#9 0x555b9ab1ad4b <unknown>
+#10 0x555b9ab1b9b1 <unknown>
+#11 0x555b9aff98cb <unknown>
+#12 0x555b9affd7ca <unknown>
+#13 0x555b9afe1622 <unknown>
+#14 0x555b9affe354 <unknown>
+#15 0x555b9afc645f <unknown>
+#16 0x555b9b0224f8 <unknown>
+#17 0x555b9b0226d6 <unknown>
+#18 0x555b9b033586 <unknown>
+#19 0x7f7fb6a37eda <unknown>
+#20 0x7f7fb6abfac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 113, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 83, in select_preferred_store
+    input_el.send_keys(Keys.ARROW_DOWN)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 305, in send_keys
+    self._execute(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x555b9b03471a <unknown>
+#1 0x555b9aad6ef3 <unknown>
+#2 0x555b9ab22b9c <unknown>
+#3 0x555b9ab20de0 <unknown>
+#4 0x555b9ab4e3a2 <unknown>
+#5 0x555b9ab1c51a <unknown>
+#6 0x555b9ab4e56e <unknown>
+#7 0x555b9ab742a0 <unknown>
+#8 0x555b9ab4e173 <unknown>
+#9 0x555b9ab1ad4b <unknown>
+#10 0x555b9ab1b9b1 <unknown>
+#11 0x555b9aff98cb <unknown>
+#12 0x555b9affd7ca <unknown>
+#13 0x555b9afe1622 <unknown>
+#14 0x555b9affe354 <unknown>
+#15 0x555b9afc645f <unknown>
+#16 0x555b9b0224f8 <unknown>
+#17 0x555b9b0226d6 <unknown>
+#18 0x555b9b033586 <unknown>
+#19 0x7f7fb6a37eda <unknown>
+#20 0x7f7fb6abfac4 clone
+
+2025-05-26 13:08:13,714 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:39:07,868 INFO: Starting contest submission scheduler...
+2025-05-26 15:39:07,868 INFO: Running scheduled form submission...
+2025-05-26 15:39:07,869 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 15:39:18,317 ERROR: Form submission failed: 'bytes' object has no attribute 'element_to_be_clickable'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 117, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 86, in select_preferred_store
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "#dnn1537PreferredStore_dropdown .angucomplete-row"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'element_to_be_clickable'
+2025-05-26 15:39:18,399 ERROR: Error during form submission: 'bytes' object has no attribute 'element_to_be_clickable'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 117, in submit_form
+    select_preferred_store(driver, preferred_store)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 86, in select_preferred_store
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "#dnn1537PreferredStore_dropdown .angucomplete-row"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'element_to_be_clickable'
+2025-05-26 15:39:18,399 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:42:21,079 INFO: Starting contest submission scheduler...
+2025-05-26 15:42:21,079 INFO: Running scheduled form submission...
+2025-05-26 15:42:21,080 WARNING: No available address to use.
+2025-05-26 15:42:21,080 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 15:42:21,080 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 15:42:21,080 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:42:29,958 INFO: Starting contest submission scheduler...
+2025-05-26 15:42:29,959 INFO: Running scheduled form submission...
+2025-05-26 15:42:29,959 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 15:42:46,043 INFO: Successfully uploaded and moved: WhatsApp Image 2025-05-25 at 22.29.58.jpeg
+2025-05-26 15:42:46,158 INFO: Form submitted.
+2025-05-26 15:42:51,158 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 151, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 15:42:51,158 INFO: Result video detected: error
+2025-05-26 15:42:51,222 INFO: Submission completed successfully.
+2025-05-26 15:42:51,222 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:44:34,162 INFO: Starting contest submission scheduler...
+2025-05-26 15:44:34,162 INFO: Running scheduled form submission...
+2025-05-26 15:44:34,164 INFO: Selected address: example@example.com (used 8 times)
+2025-05-26 15:45:12,350 ERROR: No fresh receipts found.
+2025-05-26 15:45:12,351 ERROR: Form submission failed: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 123, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 41, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 15:45:12,437 ERROR: Error during form submission: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 123, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 41, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 15:45:12,438 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:45:40,277 INFO: Starting contest submission scheduler...
+2025-05-26 15:45:40,278 INFO: Running scheduled form submission...
+2025-05-26 15:45:40,279 WARNING: No available address to use.
+2025-05-26 15:45:40,279 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 15:45:40,281 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 84, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 15:45:40,283 INFO: No scheduled jobs found. Exiting.
+2025-05-26 15:45:55,863 INFO: Starting contest submission scheduler...
+2025-05-26 15:45:55,863 INFO: Running scheduled form submission...
+2025-05-26 15:45:55,864 INFO: Selected address: example@example.com (used 9 times)
+2025-05-26 15:46:21,191 INFO: Successfully uploaded and moved: WhatsApp Image 2025-05-25 at 22.29.58.jpeg
+2025-05-26 15:48:00,875 ERROR: No fresh receipts found.
+2025-05-26 15:48:20,441 INFO: Successfully uploaded and moved: WhatsApp Image 2025-05-25 at 22.29.58.jpeg
+2025-05-26 15:48:26,656 INFO: Form submitted.
+2025-05-26 15:59:06,242 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/4f573953f49ef0ee151f3bfc8db662e9
+2025-05-26 15:59:06,242 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9769ff8d50>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4f573953f49ef0ee151f3bfc8db662e9
+2025-05-26 15:59:06,243 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9769efbc10>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4f573953f49ef0ee151f3bfc8db662e9
+2025-05-26 15:59:15,537 INFO: Starting contest submission scheduler...
+2025-05-26 15:59:15,537 INFO: Running scheduled form submission...
+2025-05-26 15:59:15,538 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 15:59:29,015 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 15:59:29,127 INFO: Form submitted.
+2025-05-26 15:59:34,127 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 154, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 15:59:34,128 INFO: Result video detected: error
+2025-05-26 15:59:34,191 INFO: Submission completed successfully.
+2025-05-26 15:59:34,192 INFO: No scheduled jobs found. Exiting.
+2025-05-26 16:01:11,088 INFO: Starting contest submission scheduler...
+2025-05-26 16:01:11,088 INFO: Running scheduled form submission...
+2025-05-26 16:01:11,090 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 16:01:41,084 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 16:03:04,794 INFO: Form submitted.
+2025-05-26 16:08:30,343 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/fdd978012bd3199d40b18bcccc775cc7
+2025-05-26 16:08:30,344 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc417f59ed0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/fdd978012bd3199d40b18bcccc775cc7
+2025-05-26 16:08:30,344 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc417f46510>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/fdd978012bd3199d40b18bcccc775cc7
+2025-05-26 16:08:40,616 INFO: Starting contest submission scheduler...
+2025-05-26 16:08:40,617 INFO: Running scheduled form submission...
+2025-05-26 16:08:40,619 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 16:08:54,823 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 16:19:45,869 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/4e096dd2e8ecf8086046f0fc9c022672
+2025-05-26 16:19:45,870 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdc94455d90>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4e096dd2e8ecf8086046f0fc9c022672
+2025-05-26 16:19:45,870 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdc94456550>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4e096dd2e8ecf8086046f0fc9c022672
+2025-05-26 16:19:53,214 INFO: Starting contest submission scheduler...
+2025-05-26 16:19:53,215 INFO: Running scheduled form submission...
+2025-05-26 16:19:53,216 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 16:20:03,846 ERROR: Could not upload file using visible container.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x5607c022a71a <unknown>
+#1 0x5607bfccd0a0 <unknown>
+#2 0x5607bfd1e9b0 <unknown>
+#3 0x5607bfd1eba1 <unknown>
+#4 0x5607bfd6cea4 <unknown>
+#5 0x5607bfd443cd <unknown>
+#6 0x5607bfd6a2a0 <unknown>
+#7 0x5607bfd44173 <unknown>
+#8 0x5607bfd10d4b <unknown>
+#9 0x5607bfd119b1 <unknown>
+#10 0x5607c01ef8cb <unknown>
+#11 0x5607c01f37ca <unknown>
+#12 0x5607c01d7622 <unknown>
+#13 0x5607c01f4354 <unknown>
+#14 0x5607c01bc45f <unknown>
+#15 0x5607c02184f8 <unknown>
+#16 0x5607c02186d6 <unknown>
+#17 0x5607c0229586 <unknown>
+#18 0x7ff8ac66beda <unknown>
+#19 0x7ff8ac6f3ac4 clone
+
+2025-05-26 16:20:03,849 ERROR: Form submission failed: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x5607c022a71a <unknown>
+#1 0x5607bfccd0a0 <unknown>
+#2 0x5607bfd1e9b0 <unknown>
+#3 0x5607bfd1eba1 <unknown>
+#4 0x5607bfd6cea4 <unknown>
+#5 0x5607bfd443cd <unknown>
+#6 0x5607bfd6a2a0 <unknown>
+#7 0x5607bfd44173 <unknown>
+#8 0x5607bfd10d4b <unknown>
+#9 0x5607bfd119b1 <unknown>
+#10 0x5607c01ef8cb <unknown>
+#11 0x5607c01f37ca <unknown>
+#12 0x5607c01d7622 <unknown>
+#13 0x5607c01f4354 <unknown>
+#14 0x5607c01bc45f <unknown>
+#15 0x5607c02184f8 <unknown>
+#16 0x5607c02186d6 <unknown>
+#17 0x5607c0229586 <unknown>
+#18 0x7ff8ac66beda <unknown>
+#19 0x7ff8ac6f3ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 140, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x5607c022a71a <unknown>
+#1 0x5607bfccd0a0 <unknown>
+#2 0x5607bfd1e9b0 <unknown>
+#3 0x5607bfd1eba1 <unknown>
+#4 0x5607bfd6cea4 <unknown>
+#5 0x5607bfd443cd <unknown>
+#6 0x5607bfd6a2a0 <unknown>
+#7 0x5607bfd44173 <unknown>
+#8 0x5607bfd10d4b <unknown>
+#9 0x5607bfd119b1 <unknown>
+#10 0x5607c01ef8cb <unknown>
+#11 0x5607c01f37ca <unknown>
+#12 0x5607c01d7622 <unknown>
+#13 0x5607c01f4354 <unknown>
+#14 0x5607c01bc45f <unknown>
+#15 0x5607c02184f8 <unknown>
+#16 0x5607c02186d6 <unknown>
+#17 0x5607c0229586 <unknown>
+#18 0x7ff8ac66beda <unknown>
+#19 0x7ff8ac6f3ac4 clone
+
+2025-05-26 16:20:03,918 ERROR: Error during form submission: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x5607c022a71a <unknown>
+#1 0x5607bfccd0a0 <unknown>
+#2 0x5607bfd1e9b0 <unknown>
+#3 0x5607bfd1eba1 <unknown>
+#4 0x5607bfd6cea4 <unknown>
+#5 0x5607bfd443cd <unknown>
+#6 0x5607bfd6a2a0 <unknown>
+#7 0x5607bfd44173 <unknown>
+#8 0x5607bfd10d4b <unknown>
+#9 0x5607bfd119b1 <unknown>
+#10 0x5607c01ef8cb <unknown>
+#11 0x5607c01f37ca <unknown>
+#12 0x5607c01d7622 <unknown>
+#13 0x5607c01f4354 <unknown>
+#14 0x5607c01bc45f <unknown>
+#15 0x5607c02184f8 <unknown>
+#16 0x5607c02186d6 <unknown>
+#17 0x5607c0229586 <unknown>
+#18 0x7ff8ac66beda <unknown>
+#19 0x7ff8ac6f3ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 140, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x5607c022a71a <unknown>
+#1 0x5607bfccd0a0 <unknown>
+#2 0x5607bfd1e9b0 <unknown>
+#3 0x5607bfd1eba1 <unknown>
+#4 0x5607bfd6cea4 <unknown>
+#5 0x5607bfd443cd <unknown>
+#6 0x5607bfd6a2a0 <unknown>
+#7 0x5607bfd44173 <unknown>
+#8 0x5607bfd10d4b <unknown>
+#9 0x5607bfd119b1 <unknown>
+#10 0x5607c01ef8cb <unknown>
+#11 0x5607c01f37ca <unknown>
+#12 0x5607c01d7622 <unknown>
+#13 0x5607c01f4354 <unknown>
+#14 0x5607c01bc45f <unknown>
+#15 0x5607c02184f8 <unknown>
+#16 0x5607c02186d6 <unknown>
+#17 0x5607c0229586 <unknown>
+#18 0x7ff8ac66beda <unknown>
+#19 0x7ff8ac6f3ac4 clone
+
+2025-05-26 16:20:03,919 INFO: No scheduled jobs found. Exiting.
+2025-05-26 16:20:55,649 INFO: Starting contest submission scheduler...
+2025-05-26 16:20:55,649 INFO: Running scheduled form submission...
+2025-05-26 16:20:55,650 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 16:21:06,194 ERROR: Could not upload file using visible container.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x560bfec8f71a <unknown>
+#1 0x560bfe7320a0 <unknown>
+#2 0x560bfe7839b0 <unknown>
+#3 0x560bfe783ba1 <unknown>
+#4 0x560bfe7d1ea4 <unknown>
+#5 0x560bfe7a93cd <unknown>
+#6 0x560bfe7cf2a0 <unknown>
+#7 0x560bfe7a9173 <unknown>
+#8 0x560bfe775d4b <unknown>
+#9 0x560bfe7769b1 <unknown>
+#10 0x560bfec548cb <unknown>
+#11 0x560bfec587ca <unknown>
+#12 0x560bfec3c622 <unknown>
+#13 0x560bfec59354 <unknown>
+#14 0x560bfec2145f <unknown>
+#15 0x560bfec7d4f8 <unknown>
+#16 0x560bfec7d6d6 <unknown>
+#17 0x560bfec8e586 <unknown>
+#18 0x7feeea2d0eda <unknown>
+#19 0x7feeea358ac4 clone
+
+2025-05-26 16:21:06,198 ERROR: Form submission failed: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x560bfec8f71a <unknown>
+#1 0x560bfe7320a0 <unknown>
+#2 0x560bfe7839b0 <unknown>
+#3 0x560bfe783ba1 <unknown>
+#4 0x560bfe7d1ea4 <unknown>
+#5 0x560bfe7a93cd <unknown>
+#6 0x560bfe7cf2a0 <unknown>
+#7 0x560bfe7a9173 <unknown>
+#8 0x560bfe775d4b <unknown>
+#9 0x560bfe7769b1 <unknown>
+#10 0x560bfec548cb <unknown>
+#11 0x560bfec587ca <unknown>
+#12 0x560bfec3c622 <unknown>
+#13 0x560bfec59354 <unknown>
+#14 0x560bfec2145f <unknown>
+#15 0x560bfec7d4f8 <unknown>
+#16 0x560bfec7d6d6 <unknown>
+#17 0x560bfec8e586 <unknown>
+#18 0x7feeea2d0eda <unknown>
+#19 0x7feeea358ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 140, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x560bfec8f71a <unknown>
+#1 0x560bfe7320a0 <unknown>
+#2 0x560bfe7839b0 <unknown>
+#3 0x560bfe783ba1 <unknown>
+#4 0x560bfe7d1ea4 <unknown>
+#5 0x560bfe7a93cd <unknown>
+#6 0x560bfe7cf2a0 <unknown>
+#7 0x560bfe7a9173 <unknown>
+#8 0x560bfe775d4b <unknown>
+#9 0x560bfe7769b1 <unknown>
+#10 0x560bfec548cb <unknown>
+#11 0x560bfec587ca <unknown>
+#12 0x560bfec3c622 <unknown>
+#13 0x560bfec59354 <unknown>
+#14 0x560bfec2145f <unknown>
+#15 0x560bfec7d4f8 <unknown>
+#16 0x560bfec7d6d6 <unknown>
+#17 0x560bfec8e586 <unknown>
+#18 0x7feeea2d0eda <unknown>
+#19 0x7feeea358ac4 clone
+
+2025-05-26 16:21:06,266 ERROR: Error during form submission: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x560bfec8f71a <unknown>
+#1 0x560bfe7320a0 <unknown>
+#2 0x560bfe7839b0 <unknown>
+#3 0x560bfe783ba1 <unknown>
+#4 0x560bfe7d1ea4 <unknown>
+#5 0x560bfe7a93cd <unknown>
+#6 0x560bfe7cf2a0 <unknown>
+#7 0x560bfe7a9173 <unknown>
+#8 0x560bfe775d4b <unknown>
+#9 0x560bfe7769b1 <unknown>
+#10 0x560bfec548cb <unknown>
+#11 0x560bfec587ca <unknown>
+#12 0x560bfec3c622 <unknown>
+#13 0x560bfec59354 <unknown>
+#14 0x560bfec2145f <unknown>
+#15 0x560bfec7d4f8 <unknown>
+#16 0x560bfec7d6d6 <unknown>
+#17 0x560bfec8e586 <unknown>
+#18 0x7feeea2d0eda <unknown>
+#19 0x7feeea358ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 140, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 52, in upload_receipt
+    upload_container = driver.find_element(By.CSS_SELECTOR, ".dnnFormFileUpload")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".dnnFormFileUpload"}
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+#0 0x560bfec8f71a <unknown>
+#1 0x560bfe7320a0 <unknown>
+#2 0x560bfe7839b0 <unknown>
+#3 0x560bfe783ba1 <unknown>
+#4 0x560bfe7d1ea4 <unknown>
+#5 0x560bfe7a93cd <unknown>
+#6 0x560bfe7cf2a0 <unknown>
+#7 0x560bfe7a9173 <unknown>
+#8 0x560bfe775d4b <unknown>
+#9 0x560bfe7769b1 <unknown>
+#10 0x560bfec548cb <unknown>
+#11 0x560bfec587ca <unknown>
+#12 0x560bfec3c622 <unknown>
+#13 0x560bfec59354 <unknown>
+#14 0x560bfec2145f <unknown>
+#15 0x560bfec7d4f8 <unknown>
+#16 0x560bfec7d6d6 <unknown>
+#17 0x560bfec8e586 <unknown>
+#18 0x7feeea2d0eda <unknown>
+#19 0x7feeea358ac4 clone
+
+2025-05-26 16:21:06,268 INFO: No scheduled jobs found. Exiting.
+2025-05-26 17:23:00,942 INFO: Starting contest submission scheduler...
+2025-05-26 17:23:00,942 INFO: Running scheduled form submission...
+2025-05-26 17:23:00,944 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 17:23:16,377 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 17:23:26,131 INFO: Form submitted.
+2025-05-26 17:24:59,844 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/b47de54a21a5038a0ac140dc17fd9b89
+2025-05-26 17:24:59,845 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcba40b3410>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/b47de54a21a5038a0ac140dc17fd9b89
+2025-05-26 17:24:59,846 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcba4180310>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/b47de54a21a5038a0ac140dc17fd9b89
+2025-05-26 17:25:36,278 INFO: Starting contest submission scheduler...
+2025-05-26 17:25:36,278 INFO: Running scheduled form submission...
+2025-05-26 17:25:36,280 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 17:26:17,673 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 17:26:31,831 INFO: Form submitted.
+2025-05-26 17:26:36,831 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 200, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 17:26:36,833 INFO: Result video detected: error
+2025-05-26 17:26:36,950 INFO: Submission completed successfully.
+2025-05-26 17:26:36,951 INFO: No scheduled jobs found. Exiting.
+2025-05-26 17:26:53,628 INFO: Starting contest submission scheduler...
+2025-05-26 17:26:53,628 INFO: Running scheduled form submission...
+2025-05-26 17:26:53,630 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 17:27:15,243 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-26 17:27:56,753 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/645586a82385f0d695fa8f77d478828a
+2025-05-26 17:27:56,754 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9848b5fed0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/645586a82385f0d695fa8f77d478828a
+2025-05-26 17:27:56,755 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9848b5c890>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/645586a82385f0d695fa8f77d478828a
+2025-05-26 17:28:00,325 INFO: Starting contest submission scheduler...
+2025-05-26 17:28:00,325 INFO: Running scheduled form submission...
+2025-05-26 17:28:00,327 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 17:28:45,569 INFO: Successfully uploaded and moved: baby3.jpg
+2025-05-26 17:47:27,563 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/0fed0682e5e7ed69af830a9c6ff0c0d1
+2025-05-26 17:47:27,564 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0466d0e190>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/0fed0682e5e7ed69af830a9c6ff0c0d1
+2025-05-26 17:47:27,564 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f04620abfd0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/0fed0682e5e7ed69af830a9c6ff0c0d1
+2025-05-26 17:47:29,665 INFO: Starting contest submission scheduler...
+2025-05-26 17:47:29,665 INFO: Running scheduled form submission...
+2025-05-26 17:47:29,667 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 17:47:37,606 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/fa1ac92f35f9b18fccede9dd58bf1b84
+2025-05-26 17:47:37,607 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbadf64d910>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/fa1ac92f35f9b18fccede9dd58bf1b84
+2025-05-26 17:47:37,609 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbadf64e010>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/fa1ac92f35f9b18fccede9dd58bf1b84
+2025-05-26 17:48:00,417 INFO: Starting contest submission scheduler...
+2025-05-26 17:48:00,418 INFO: Running scheduled form submission...
+2025-05-26 17:48:00,419 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 17:48:37,798 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 17:58:24,038 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/8793ebab04e7e3d152c480bdc39e5b9f
+2025-05-26 17:58:24,039 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3aee8b0710>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/8793ebab04e7e3d152c480bdc39e5b9f
+2025-05-26 17:58:24,039 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3ae6d26f50>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/8793ebab04e7e3d152c480bdc39e5b9f
+2025-05-26 17:58:37,842 INFO: Starting contest submission scheduler...
+2025-05-26 17:58:37,842 INFO: Running scheduled form submission...
+2025-05-26 17:58:37,844 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 17:58:49,479 ERROR: No fresh receipts found.
+2025-05-26 17:58:49,479 ERROR: Form submission failed: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 170, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 45, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 17:58:49,588 ERROR: Error during form submission: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 170, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 45, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 17:58:49,589 INFO: No scheduled jobs found. Exiting.
+2025-05-26 17:59:06,249 INFO: Starting contest submission scheduler...
+2025-05-26 17:59:06,249 INFO: Running scheduled form submission...
+2025-05-26 17:59:06,251 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 17:59:36,208 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 18:02:54,749 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/4b84378e2103958753d474ca4280bc35
+2025-05-26 18:02:54,750 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdbb9516f50>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4b84378e2103958753d474ca4280bc35
+2025-05-26 18:02:54,750 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdbb953a290>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/4b84378e2103958753d474ca4280bc35
+2025-05-26 18:02:58,896 INFO: Starting contest submission scheduler...
+2025-05-26 18:02:58,896 INFO: Running scheduled form submission...
+2025-05-26 18:02:58,898 INFO: Selected address: example@example.com (used 4 times)
+2025-05-26 18:03:14,656 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-26 18:39:10,755 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/0dd9252c669b821b2daed38431dd320e
+2025-05-26 18:39:10,756 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcff660c550>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/0dd9252c669b821b2daed38431dd320e
+2025-05-26 18:39:10,756 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcff8018c10>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/0dd9252c669b821b2daed38431dd320e
+2025-05-26 18:39:33,584 INFO: Starting contest submission scheduler...
+2025-05-26 18:39:33,585 INFO: Running scheduled form submission...
+2025-05-26 18:39:33,586 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 18:39:49,810 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 18:40:02,536 INFO: Form submitted.
+2025-05-26 18:40:07,537 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 170, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 18:40:07,539 INFO: Result video detected: error
+2025-05-26 18:40:07,642 INFO: Submission completed successfully.
+2025-05-26 18:40:07,642 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:42:13,109 INFO: Starting contest submission scheduler...
+2025-05-26 18:42:13,109 INFO: Running scheduled form submission...
+2025-05-26 18:42:13,111 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 18:42:16,048 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55eb92c9871a <unknown>
+#1 0x55eb9273b0a0 <unknown>
+#2 0x55eb927751ff <unknown>
+#3 0x55eb92770c0f <unknown>
+#4 0x55eb927c0d75 <unknown>
+#5 0x55eb927c0296 <unknown>
+#6 0x55eb927b2173 <unknown>
+#7 0x55eb9277ed4b <unknown>
+#8 0x55eb9277f9b1 <unknown>
+#9 0x55eb92c5d8cb <unknown>
+#10 0x55eb92c617ca <unknown>
+#11 0x55eb92c45622 <unknown>
+#12 0x55eb92c62354 <unknown>
+#13 0x55eb92c2a45f <unknown>
+#14 0x55eb92c864f8 <unknown>
+#15 0x55eb92c866d6 <unknown>
+#16 0x55eb92c97586 <unknown>
+#17 0x7f16476f9eda <unknown>
+#18 0x7f1647781ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55eb92c9871a <unknown>
+#1 0x55eb9273b0a0 <unknown>
+#2 0x55eb927751ff <unknown>
+#3 0x55eb92770c0f <unknown>
+#4 0x55eb927c0d75 <unknown>
+#5 0x55eb927c0296 <unknown>
+#6 0x55eb927b2173 <unknown>
+#7 0x55eb9277ed4b <unknown>
+#8 0x55eb9277f9b1 <unknown>
+#9 0x55eb92c5d8cb <unknown>
+#10 0x55eb92c617ca <unknown>
+#11 0x55eb92c45622 <unknown>
+#12 0x55eb92c62354 <unknown>
+#13 0x55eb92c2a45f <unknown>
+#14 0x55eb92c864f8 <unknown>
+#15 0x55eb92c866d6 <unknown>
+#16 0x55eb92c97586 <unknown>
+#17 0x7f16476f9eda <unknown>
+#18 0x7f1647781ac4 clone
+
+2025-05-26 18:42:16,052 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:42:45,459 INFO: Starting contest submission scheduler...
+2025-05-26 18:42:45,459 INFO: Running scheduled form submission...
+2025-05-26 18:42:45,461 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 18:42:48,346 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55f2a981571a <unknown>
+#1 0x55f2a92b80a0 <unknown>
+#2 0x55f2a92f21ff <unknown>
+#3 0x55f2a92edc0f <unknown>
+#4 0x55f2a933dd75 <unknown>
+#5 0x55f2a933d296 <unknown>
+#6 0x55f2a932f173 <unknown>
+#7 0x55f2a92fbd4b <unknown>
+#8 0x55f2a92fc9b1 <unknown>
+#9 0x55f2a97da8cb <unknown>
+#10 0x55f2a97de7ca <unknown>
+#11 0x55f2a97c2622 <unknown>
+#12 0x55f2a97df354 <unknown>
+#13 0x55f2a97a745f <unknown>
+#14 0x55f2a98034f8 <unknown>
+#15 0x55f2a98036d6 <unknown>
+#16 0x55f2a9814586 <unknown>
+#17 0x7f91fd9e0eda <unknown>
+#18 0x7f91fda68ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55f2a981571a <unknown>
+#1 0x55f2a92b80a0 <unknown>
+#2 0x55f2a92f21ff <unknown>
+#3 0x55f2a92edc0f <unknown>
+#4 0x55f2a933dd75 <unknown>
+#5 0x55f2a933d296 <unknown>
+#6 0x55f2a932f173 <unknown>
+#7 0x55f2a92fbd4b <unknown>
+#8 0x55f2a92fc9b1 <unknown>
+#9 0x55f2a97da8cb <unknown>
+#10 0x55f2a97de7ca <unknown>
+#11 0x55f2a97c2622 <unknown>
+#12 0x55f2a97df354 <unknown>
+#13 0x55f2a97a745f <unknown>
+#14 0x55f2a98034f8 <unknown>
+#15 0x55f2a98036d6 <unknown>
+#16 0x55f2a9814586 <unknown>
+#17 0x7f91fd9e0eda <unknown>
+#18 0x7f91fda68ac4 clone
+
+2025-05-26 18:42:48,351 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:43:26,267 INFO: Starting contest submission scheduler...
+2025-05-26 18:43:26,267 INFO: Running scheduled form submission...
+2025-05-26 18:43:26,268 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 18:43:28,986 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55b2f932c71a <unknown>
+#1 0x55b2f8dcf0a0 <unknown>
+#2 0x55b2f8e091ff <unknown>
+#3 0x55b2f8e04c0f <unknown>
+#4 0x55b2f8e54d75 <unknown>
+#5 0x55b2f8e54296 <unknown>
+#6 0x55b2f8e46173 <unknown>
+#7 0x55b2f8e12d4b <unknown>
+#8 0x55b2f8e139b1 <unknown>
+#9 0x55b2f92f18cb <unknown>
+#10 0x55b2f92f57ca <unknown>
+#11 0x55b2f92d9622 <unknown>
+#12 0x55b2f92f6354 <unknown>
+#13 0x55b2f92be45f <unknown>
+#14 0x55b2f931a4f8 <unknown>
+#15 0x55b2f931a6d6 <unknown>
+#16 0x55b2f932b586 <unknown>
+#17 0x7fa39066deda <unknown>
+#18 0x7fa3906f5ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55b2f932c71a <unknown>
+#1 0x55b2f8dcf0a0 <unknown>
+#2 0x55b2f8e091ff <unknown>
+#3 0x55b2f8e04c0f <unknown>
+#4 0x55b2f8e54d75 <unknown>
+#5 0x55b2f8e54296 <unknown>
+#6 0x55b2f8e46173 <unknown>
+#7 0x55b2f8e12d4b <unknown>
+#8 0x55b2f8e139b1 <unknown>
+#9 0x55b2f92f18cb <unknown>
+#10 0x55b2f92f57ca <unknown>
+#11 0x55b2f92d9622 <unknown>
+#12 0x55b2f92f6354 <unknown>
+#13 0x55b2f92be45f <unknown>
+#14 0x55b2f931a4f8 <unknown>
+#15 0x55b2f931a6d6 <unknown>
+#16 0x55b2f932b586 <unknown>
+#17 0x7fa39066deda <unknown>
+#18 0x7fa3906f5ac4 clone
+
+2025-05-26 18:43:28,990 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:46:36,114 INFO: Starting contest submission scheduler...
+2025-05-26 18:46:36,115 INFO: Running scheduled form submission...
+2025-05-26 18:46:36,117 INFO: Selected address: example@example.com (used 5 times)
+2025-05-26 18:46:39,395 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55a88d1d271a <unknown>
+#1 0x55a88cc750a0 <unknown>
+#2 0x55a88ccaf1ff <unknown>
+#3 0x55a88ccaac0f <unknown>
+#4 0x55a88ccfad75 <unknown>
+#5 0x55a88ccfa296 <unknown>
+#6 0x55a88ccec173 <unknown>
+#7 0x55a88ccb8d4b <unknown>
+#8 0x55a88ccb99b1 <unknown>
+#9 0x55a88d1978cb <unknown>
+#10 0x55a88d19b7ca <unknown>
+#11 0x55a88d17f622 <unknown>
+#12 0x55a88d19c354 <unknown>
+#13 0x55a88d16445f <unknown>
+#14 0x55a88d1c04f8 <unknown>
+#15 0x55a88d1c06d6 <unknown>
+#16 0x55a88d1d1586 <unknown>
+#17 0x7f563cc52eda <unknown>
+#18 0x7f563ccdaac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55a88d1d271a <unknown>
+#1 0x55a88cc750a0 <unknown>
+#2 0x55a88ccaf1ff <unknown>
+#3 0x55a88ccaac0f <unknown>
+#4 0x55a88ccfad75 <unknown>
+#5 0x55a88ccfa296 <unknown>
+#6 0x55a88ccec173 <unknown>
+#7 0x55a88ccb8d4b <unknown>
+#8 0x55a88ccb99b1 <unknown>
+#9 0x55a88d1978cb <unknown>
+#10 0x55a88d19b7ca <unknown>
+#11 0x55a88d17f622 <unknown>
+#12 0x55a88d19c354 <unknown>
+#13 0x55a88d16445f <unknown>
+#14 0x55a88d1c04f8 <unknown>
+#15 0x55a88d1c06d6 <unknown>
+#16 0x55a88d1d1586 <unknown>
+#17 0x7f563cc52eda <unknown>
+#18 0x7f563ccdaac4 clone
+
+2025-05-26 18:46:39,402 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:54:04,210 INFO: Starting contest submission scheduler...
+2025-05-26 18:54:04,210 INFO: Running scheduled form submission...
+2025-05-26 18:54:04,212 WARNING: No available address to use.
+2025-05-26 18:54:04,212 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 18:54:04,223 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 18:54:04,226 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:54:18,655 INFO: Starting contest submission scheduler...
+2025-05-26 18:54:18,655 INFO: Running scheduled form submission...
+2025-05-26 18:54:18,656 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 18:54:32,455 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-26 18:54:32,587 INFO: Form submitted.
+2025-05-26 18:54:37,587 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 166, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 18:54:37,588 INFO: Result video detected: error
+2025-05-26 18:54:37,718 INFO: Submission completed successfully.
+2025-05-26 18:54:37,719 INFO: No scheduled jobs found. Exiting.
+2025-05-26 18:58:49,283 INFO: Starting contest submission scheduler...
+2025-05-26 18:58:49,283 INFO: Running scheduled form submission...
+2025-05-26 18:58:49,285 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 18:59:53,172 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55d42418171a <unknown>
+#1 0x55d423c240a0 <unknown>
+#2 0x55d423c5e1ff <unknown>
+#3 0x55d423c59c0f <unknown>
+#4 0x55d423ca9d75 <unknown>
+#5 0x55d423ca9296 <unknown>
+#6 0x55d423c9b173 <unknown>
+#7 0x55d423c67d4b <unknown>
+#8 0x55d423c689b1 <unknown>
+#9 0x55d4241468cb <unknown>
+#10 0x55d42414a7ca <unknown>
+#11 0x55d42412e622 <unknown>
+#12 0x55d42414b354 <unknown>
+#13 0x55d42411345f <unknown>
+#14 0x55d42416f4f8 <unknown>
+#15 0x55d42416f6d6 <unknown>
+#16 0x55d424180586 <unknown>
+#17 0x7fa8a40e8eda <unknown>
+#18 0x7fa8a4170ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55d42418171a <unknown>
+#1 0x55d423c240a0 <unknown>
+#2 0x55d423c5e1ff <unknown>
+#3 0x55d423c59c0f <unknown>
+#4 0x55d423ca9d75 <unknown>
+#5 0x55d423ca9296 <unknown>
+#6 0x55d423c9b173 <unknown>
+#7 0x55d423c67d4b <unknown>
+#8 0x55d423c689b1 <unknown>
+#9 0x55d4241468cb <unknown>
+#10 0x55d42414a7ca <unknown>
+#11 0x55d42412e622 <unknown>
+#12 0x55d42414b354 <unknown>
+#13 0x55d42411345f <unknown>
+#14 0x55d42416f4f8 <unknown>
+#15 0x55d42416f6d6 <unknown>
+#16 0x55d424180586 <unknown>
+#17 0x7fa8a40e8eda <unknown>
+#18 0x7fa8a4170ac4 clone
+
+2025-05-26 18:59:53,181 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:00:57,283 INFO: Starting contest submission scheduler...
+2025-05-26 19:00:57,284 INFO: Running scheduled form submission...
+2025-05-26 19:00:57,284 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 19:01:00,044 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55907335571a <unknown>
+#1 0x559072df80a0 <unknown>
+#2 0x559072e321ff <unknown>
+#3 0x559072e2dc0f <unknown>
+#4 0x559072e7dd75 <unknown>
+#5 0x559072e7d296 <unknown>
+#6 0x559072e6f173 <unknown>
+#7 0x559072e3bd4b <unknown>
+#8 0x559072e3c9b1 <unknown>
+#9 0x55907331a8cb <unknown>
+#10 0x55907331e7ca <unknown>
+#11 0x559073302622 <unknown>
+#12 0x55907331f354 <unknown>
+#13 0x5590732e745f <unknown>
+#14 0x5590733434f8 <unknown>
+#15 0x5590733436d6 <unknown>
+#16 0x559073354586 <unknown>
+#17 0x7f7f1e945eda <unknown>
+#18 0x7f7f1e9cdac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 109, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 84, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55907335571a <unknown>
+#1 0x559072df80a0 <unknown>
+#2 0x559072e321ff <unknown>
+#3 0x559072e2dc0f <unknown>
+#4 0x559072e7dd75 <unknown>
+#5 0x559072e7d296 <unknown>
+#6 0x559072e6f173 <unknown>
+#7 0x559072e3bd4b <unknown>
+#8 0x559072e3c9b1 <unknown>
+#9 0x55907331a8cb <unknown>
+#10 0x55907331e7ca <unknown>
+#11 0x559073302622 <unknown>
+#12 0x55907331f354 <unknown>
+#13 0x5590732e745f <unknown>
+#14 0x5590733434f8 <unknown>
+#15 0x5590733436d6 <unknown>
+#16 0x559073354586 <unknown>
+#17 0x7f7f1e945eda <unknown>
+#18 0x7f7f1e9cdac4 clone
+
+2025-05-26 19:01:00,046 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:03:17,555 INFO: Starting contest submission scheduler...
+2025-05-26 19:03:17,556 INFO: Running scheduled form submission...
+2025-05-26 19:03:17,556 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 19:03:20,237 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5565a484471a <unknown>
+#1 0x5565a42e70a0 <unknown>
+#2 0x5565a43211ff <unknown>
+#3 0x5565a431cc0f <unknown>
+#4 0x5565a436cd75 <unknown>
+#5 0x5565a436c296 <unknown>
+#6 0x5565a435e173 <unknown>
+#7 0x5565a432ad4b <unknown>
+#8 0x5565a432b9b1 <unknown>
+#9 0x5565a48098cb <unknown>
+#10 0x5565a480d7ca <unknown>
+#11 0x5565a47f1622 <unknown>
+#12 0x5565a480e354 <unknown>
+#13 0x5565a47d645f <unknown>
+#14 0x5565a48324f8 <unknown>
+#15 0x5565a48326d6 <unknown>
+#16 0x5565a4843586 <unknown>
+#17 0x7efcb7477eda <unknown>
+#18 0x7efcb74ffac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 110, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 85, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5565a484471a <unknown>
+#1 0x5565a42e70a0 <unknown>
+#2 0x5565a43211ff <unknown>
+#3 0x5565a431cc0f <unknown>
+#4 0x5565a436cd75 <unknown>
+#5 0x5565a436c296 <unknown>
+#6 0x5565a435e173 <unknown>
+#7 0x5565a432ad4b <unknown>
+#8 0x5565a432b9b1 <unknown>
+#9 0x5565a48098cb <unknown>
+#10 0x5565a480d7ca <unknown>
+#11 0x5565a47f1622 <unknown>
+#12 0x5565a480e354 <unknown>
+#13 0x5565a47d645f <unknown>
+#14 0x5565a48324f8 <unknown>
+#15 0x5565a48326d6 <unknown>
+#16 0x5565a4843586 <unknown>
+#17 0x7efcb7477eda <unknown>
+#18 0x7efcb74ffac4 clone
+
+2025-05-26 19:03:20,239 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:03:53,540 INFO: Starting contest submission scheduler...
+2025-05-26 19:03:53,540 INFO: Running scheduled form submission...
+2025-05-26 19:03:53,541 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 19:03:56,244 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x565225dc371a <unknown>
+#1 0x5652258660a0 <unknown>
+#2 0x5652258a01ff <unknown>
+#3 0x56522589bc0f <unknown>
+#4 0x5652258ebd75 <unknown>
+#5 0x5652258eb296 <unknown>
+#6 0x5652258dd173 <unknown>
+#7 0x5652258a9d4b <unknown>
+#8 0x5652258aa9b1 <unknown>
+#9 0x565225d888cb <unknown>
+#10 0x565225d8c7ca <unknown>
+#11 0x565225d70622 <unknown>
+#12 0x565225d8d354 <unknown>
+#13 0x565225d5545f <unknown>
+#14 0x565225db14f8 <unknown>
+#15 0x565225db16d6 <unknown>
+#16 0x565225dc2586 <unknown>
+#17 0x7f9084c0feda <unknown>
+#18 0x7f9084c97ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 113, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 88, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x565225dc371a <unknown>
+#1 0x5652258660a0 <unknown>
+#2 0x5652258a01ff <unknown>
+#3 0x56522589bc0f <unknown>
+#4 0x5652258ebd75 <unknown>
+#5 0x5652258eb296 <unknown>
+#6 0x5652258dd173 <unknown>
+#7 0x5652258a9d4b <unknown>
+#8 0x5652258aa9b1 <unknown>
+#9 0x565225d888cb <unknown>
+#10 0x565225d8c7ca <unknown>
+#11 0x565225d70622 <unknown>
+#12 0x565225d8d354 <unknown>
+#13 0x565225d5545f <unknown>
+#14 0x565225db14f8 <unknown>
+#15 0x565225db16d6 <unknown>
+#16 0x565225dc2586 <unknown>
+#17 0x7f9084c0feda <unknown>
+#18 0x7f9084c97ac4 clone
+
+2025-05-26 19:03:56,245 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:05:10,577 INFO: Starting contest submission scheduler...
+2025-05-26 19:05:10,577 INFO: Running scheduled form submission...
+2025-05-26 19:05:10,578 INFO: Selected address: example@example.com (used 6 times)
+2025-05-26 19:05:13,334 ERROR: Error during form submission: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x564bd7ea871a <unknown>
+#1 0x564bd794b0a0 <unknown>
+#2 0x564bd79851ff <unknown>
+#3 0x564bd7980c0f <unknown>
+#4 0x564bd79d0d75 <unknown>
+#5 0x564bd79d0296 <unknown>
+#6 0x564bd79c2173 <unknown>
+#7 0x564bd798ed4b <unknown>
+#8 0x564bd798f9b1 <unknown>
+#9 0x564bd7e6d8cb <unknown>
+#10 0x564bd7e717ca <unknown>
+#11 0x564bd7e55622 <unknown>
+#12 0x564bd7e72354 <unknown>
+#13 0x564bd7e3a45f <unknown>
+#14 0x564bd7e964f8 <unknown>
+#15 0x564bd7e966d6 <unknown>
+#16 0x564bd7ea7586 <unknown>
+#17 0x7f0a303cceda <unknown>
+#18 0x7f0a30454ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 122, in submit_form
+    driver = get_chrome_driver()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 97, in get_chrome_driver
+    return webdriver.Chrome(options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x564bd7ea871a <unknown>
+#1 0x564bd794b0a0 <unknown>
+#2 0x564bd79851ff <unknown>
+#3 0x564bd7980c0f <unknown>
+#4 0x564bd79d0d75 <unknown>
+#5 0x564bd79d0296 <unknown>
+#6 0x564bd79c2173 <unknown>
+#7 0x564bd798ed4b <unknown>
+#8 0x564bd798f9b1 <unknown>
+#9 0x564bd7e6d8cb <unknown>
+#10 0x564bd7e717ca <unknown>
+#11 0x564bd7e55622 <unknown>
+#12 0x564bd7e72354 <unknown>
+#13 0x564bd7e3a45f <unknown>
+#14 0x564bd7e964f8 <unknown>
+#15 0x564bd7e966d6 <unknown>
+#16 0x564bd7ea7586 <unknown>
+#17 0x7f0a303cceda <unknown>
+#18 0x7f0a30454ac4 clone
+
+2025-05-26 19:05:13,335 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:05:39,949 INFO: Starting contest submission scheduler...
+2025-05-26 19:05:39,949 INFO: Running scheduled form submission...
+2025-05-26 19:05:39,950 WARNING: No available address to use.
+2025-05-26 19:05:39,950 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 19:05:39,950 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 19:05:39,951 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:05:48,818 INFO: Starting contest submission scheduler...
+2025-05-26 19:05:48,818 INFO: Running scheduled form submission...
+2025-05-26 19:05:48,819 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 19:05:56,502 ERROR: Form submission failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5578657e371a <unknown>
+#1 0x5578652860a0 <unknown>
+#2 0x55786525b310 <unknown>
+#3 0x557865305ae8 <unknown>
+#4 0x557865322c3c <unknown>
+#5 0x5578652fd173 <unknown>
+#6 0x5578652c9d4b <unknown>
+#7 0x5578652ca9b1 <unknown>
+#8 0x5578657a88cb <unknown>
+#9 0x5578657ac7ca <unknown>
+#10 0x557865790622 <unknown>
+#11 0x5578657ad354 <unknown>
+#12 0x55786577545f <unknown>
+#13 0x5578657d14f8 <unknown>
+#14 0x5578657d16d6 <unknown>
+#15 0x5578657e2586 <unknown>
+#16 0x7fd3619afeda <unknown>
+#17 0x7fd361a37ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 120, in submit_form
+    find_element_endswith_id(driver, "FirstName").send_keys(data['FirstName'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 32, in find_element_endswith_id
+    elems = driver.find_elements(By.CSS_SELECTOR, f"[id$='{suffix}']")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 952, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5578657e371a <unknown>
+#1 0x5578652860a0 <unknown>
+#2 0x55786525b310 <unknown>
+#3 0x557865305ae8 <unknown>
+#4 0x557865322c3c <unknown>
+#5 0x5578652fd173 <unknown>
+#6 0x5578652c9d4b <unknown>
+#7 0x5578652ca9b1 <unknown>
+#8 0x5578657a88cb <unknown>
+#9 0x5578657ac7ca <unknown>
+#10 0x557865790622 <unknown>
+#11 0x5578657ad354 <unknown>
+#12 0x55786577545f <unknown>
+#13 0x5578657d14f8 <unknown>
+#14 0x5578657d16d6 <unknown>
+#15 0x5578657e2586 <unknown>
+#16 0x7fd3619afeda <unknown>
+#17 0x7fd361a37ac4 clone
+
+2025-05-26 19:05:56,509 ERROR: Error during form submission: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5578657e371a <unknown>
+#1 0x5578652860a0 <unknown>
+#2 0x55786525b310 <unknown>
+#3 0x557865305ae8 <unknown>
+#4 0x557865322c3c <unknown>
+#5 0x5578652fd173 <unknown>
+#6 0x5578652c9d4b <unknown>
+#7 0x5578652ca9b1 <unknown>
+#8 0x5578657a88cb <unknown>
+#9 0x5578657ac7ca <unknown>
+#10 0x557865790622 <unknown>
+#11 0x5578657ad354 <unknown>
+#12 0x55786577545f <unknown>
+#13 0x5578657d14f8 <unknown>
+#14 0x5578657d16d6 <unknown>
+#15 0x5578657e2586 <unknown>
+#16 0x7fd3619afeda <unknown>
+#17 0x7fd361a37ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 120, in submit_form
+    find_element_endswith_id(driver, "FirstName").send_keys(data['FirstName'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 32, in find_element_endswith_id
+    elems = driver.find_elements(By.CSS_SELECTOR, f"[id$='{suffix}']")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 952, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x5578657e371a <unknown>
+#1 0x5578652860a0 <unknown>
+#2 0x55786525b310 <unknown>
+#3 0x557865305ae8 <unknown>
+#4 0x557865322c3c <unknown>
+#5 0x5578652fd173 <unknown>
+#6 0x5578652c9d4b <unknown>
+#7 0x5578652ca9b1 <unknown>
+#8 0x5578657a88cb <unknown>
+#9 0x5578657ac7ca <unknown>
+#10 0x557865790622 <unknown>
+#11 0x5578657ad354 <unknown>
+#12 0x55786577545f <unknown>
+#13 0x5578657d14f8 <unknown>
+#14 0x5578657d16d6 <unknown>
+#15 0x5578657e2586 <unknown>
+#16 0x7fd3619afeda <unknown>
+#17 0x7fd361a37ac4 clone
+
+2025-05-26 19:05:56,510 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:09:37,533 INFO: Starting contest submission scheduler...
+2025-05-26 19:09:37,533 INFO: Running scheduled form submission...
+2025-05-26 19:09:37,534 WARNING: No available address to use.
+2025-05-26 19:09:37,534 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 19:09:37,534 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 28, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 76, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-26 19:09:37,535 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:09:48,982 INFO: Starting contest submission scheduler...
+2025-05-26 19:09:48,982 INFO: Running scheduled form submission...
+2025-05-26 19:09:48,982 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 19:09:53,171 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/ae03624dfd4fb7b6c1a3858af0ee21ca
+2025-05-26 19:09:53,172 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f4af795d250>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/ae03624dfd4fb7b6c1a3858af0ee21ca
+2025-05-26 19:09:53,172 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f4af795de90>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/ae03624dfd4fb7b6c1a3858af0ee21ca
+2025-05-26 19:10:36,308 INFO: Starting contest submission scheduler...
+2025-05-26 19:10:36,308 INFO: Running scheduled form submission...
+2025-05-26 19:10:36,310 INFO: Selected address: example@example.com (used 8 times)
+2025-05-26 19:10:50,050 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 19:13:57,626 ERROR: Form submission failed: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55bf5270b71a <unknown>
+#1 0x55bf521ae0a0 <unknown>
+#2 0x55bf521c16eb <unknown>
+#3 0x55bf521c04a2 <unknown>
+#4 0x55bf521b55f9 <unknown>
+#5 0x55bf521b5725 <unknown>
+#6 0x55bf521b384f <unknown>
+#7 0x55bf521b7857 <unknown>
+#8 0x55bf5224c2de <unknown>
+#9 0x55bf522253a2 <unknown>
+#10 0x55bf5224b2a0 <unknown>
+#11 0x55bf52225173 <unknown>
+#12 0x55bf521f1d4b <unknown>
+#13 0x55bf521f29b1 <unknown>
+#14 0x55bf526d08cb <unknown>
+#15 0x55bf526d47ca <unknown>
+#16 0x55bf526b8622 <unknown>
+#17 0x55bf526d5354 <unknown>
+#18 0x55bf5269d45f <unknown>
+#19 0x55bf526f94f8 <unknown>
+#20 0x55bf526f96d6 <unknown>
+#21 0x55bf5270a586 <unknown>
+#22 0x7f0f2e25deda <unknown>
+#23 0x7f0f2e2e5ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 145, in submit_form
+    driver.execute_script("arguments[0].click();", submit_btn)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 544, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55bf5270b71a <unknown>
+#1 0x55bf521ae0a0 <unknown>
+#2 0x55bf521c16eb <unknown>
+#3 0x55bf521c04a2 <unknown>
+#4 0x55bf521b55f9 <unknown>
+#5 0x55bf521b5725 <unknown>
+#6 0x55bf521b384f <unknown>
+#7 0x55bf521b7857 <unknown>
+#8 0x55bf5224c2de <unknown>
+#9 0x55bf522253a2 <unknown>
+#10 0x55bf5224b2a0 <unknown>
+#11 0x55bf52225173 <unknown>
+#12 0x55bf521f1d4b <unknown>
+#13 0x55bf521f29b1 <unknown>
+#14 0x55bf526d08cb <unknown>
+#15 0x55bf526d47ca <unknown>
+#16 0x55bf526b8622 <unknown>
+#17 0x55bf526d5354 <unknown>
+#18 0x55bf5269d45f <unknown>
+#19 0x55bf526f94f8 <unknown>
+#20 0x55bf526f96d6 <unknown>
+#21 0x55bf5270a586 <unknown>
+#22 0x7f0f2e25deda <unknown>
+#23 0x7f0f2e2e5ac4 clone
+
+2025-05-26 19:13:57,731 ERROR: Error during form submission: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55bf5270b71a <unknown>
+#1 0x55bf521ae0a0 <unknown>
+#2 0x55bf521c16eb <unknown>
+#3 0x55bf521c04a2 <unknown>
+#4 0x55bf521b55f9 <unknown>
+#5 0x55bf521b5725 <unknown>
+#6 0x55bf521b384f <unknown>
+#7 0x55bf521b7857 <unknown>
+#8 0x55bf5224c2de <unknown>
+#9 0x55bf522253a2 <unknown>
+#10 0x55bf5224b2a0 <unknown>
+#11 0x55bf52225173 <unknown>
+#12 0x55bf521f1d4b <unknown>
+#13 0x55bf521f29b1 <unknown>
+#14 0x55bf526d08cb <unknown>
+#15 0x55bf526d47ca <unknown>
+#16 0x55bf526b8622 <unknown>
+#17 0x55bf526d5354 <unknown>
+#18 0x55bf5269d45f <unknown>
+#19 0x55bf526f94f8 <unknown>
+#20 0x55bf526f96d6 <unknown>
+#21 0x55bf5270a586 <unknown>
+#22 0x7f0f2e25deda <unknown>
+#23 0x7f0f2e2e5ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 145, in submit_form
+    driver.execute_script("arguments[0].click();", submit_btn)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 544, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55bf5270b71a <unknown>
+#1 0x55bf521ae0a0 <unknown>
+#2 0x55bf521c16eb <unknown>
+#3 0x55bf521c04a2 <unknown>
+#4 0x55bf521b55f9 <unknown>
+#5 0x55bf521b5725 <unknown>
+#6 0x55bf521b384f <unknown>
+#7 0x55bf521b7857 <unknown>
+#8 0x55bf5224c2de <unknown>
+#9 0x55bf522253a2 <unknown>
+#10 0x55bf5224b2a0 <unknown>
+#11 0x55bf52225173 <unknown>
+#12 0x55bf521f1d4b <unknown>
+#13 0x55bf521f29b1 <unknown>
+#14 0x55bf526d08cb <unknown>
+#15 0x55bf526d47ca <unknown>
+#16 0x55bf526b8622 <unknown>
+#17 0x55bf526d5354 <unknown>
+#18 0x55bf5269d45f <unknown>
+#19 0x55bf526f94f8 <unknown>
+#20 0x55bf526f96d6 <unknown>
+#21 0x55bf5270a586 <unknown>
+#22 0x7f0f2e25deda <unknown>
+#23 0x7f0f2e2e5ac4 clone
+
+2025-05-26 19:13:57,732 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:15:04,868 INFO: Starting contest submission scheduler...
+2025-05-26 19:15:04,869 INFO: Running scheduled form submission...
+2025-05-26 19:15:04,871 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 19:15:18,807 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-26 19:15:18,914 ERROR: Form submission failed: Message: invalid argument: Unknown permission type: cookies
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x562dc0e3371a <unknown>
+#1 0x562dc08d60a0 <unknown>
+#2 0x562dc08bd126 <unknown>
+#3 0x562dc08bbbba <unknown>
+#4 0x562dc08bc31f <unknown>
+#5 0x562dc08bc274 <unknown>
+#6 0x562dc08da2df <unknown>
+#7 0x562dc097f5ca <unknown>
+#8 0x562dc094d3a2 <unknown>
+#9 0x562dc09732a0 <unknown>
+#10 0x562dc094d173 <unknown>
+#11 0x562dc0919d4b <unknown>
+#12 0x562dc091a9b1 <unknown>
+#13 0x562dc0df88cb <unknown>
+#14 0x562dc0dfc7ca <unknown>
+#15 0x562dc0de0622 <unknown>
+#16 0x562dc0dfd354 <unknown>
+#17 0x562dc0dc545f <unknown>
+#18 0x562dc0e214f8 <unknown>
+#19 0x562dc0e216d6 <unknown>
+#20 0x562dc0e32586 <unknown>
+#21 0x7f75aefededa <unknown>
+#22 0x7f75af075ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 144, in submit_form
+    driver.execute_cdp_cmd(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 145, in execute_cdp_cmd
+    return super().execute_cdp_cmd(cmd, cmd_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 420, in execute_cdp_cmd
+    return self.execute("executeCdpCommand", {"cmd": cmd, "params": cmd_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument: Unknown permission type: cookies
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x562dc0e3371a <unknown>
+#1 0x562dc08d60a0 <unknown>
+#2 0x562dc08bd126 <unknown>
+#3 0x562dc08bbbba <unknown>
+#4 0x562dc08bc31f <unknown>
+#5 0x562dc08bc274 <unknown>
+#6 0x562dc08da2df <unknown>
+#7 0x562dc097f5ca <unknown>
+#8 0x562dc094d3a2 <unknown>
+#9 0x562dc09732a0 <unknown>
+#10 0x562dc094d173 <unknown>
+#11 0x562dc0919d4b <unknown>
+#12 0x562dc091a9b1 <unknown>
+#13 0x562dc0df88cb <unknown>
+#14 0x562dc0dfc7ca <unknown>
+#15 0x562dc0de0622 <unknown>
+#16 0x562dc0dfd354 <unknown>
+#17 0x562dc0dc545f <unknown>
+#18 0x562dc0e214f8 <unknown>
+#19 0x562dc0e216d6 <unknown>
+#20 0x562dc0e32586 <unknown>
+#21 0x7f75aefededa <unknown>
+#22 0x7f75af075ac4 clone
+
+2025-05-26 19:15:19,004 ERROR: Error during form submission: Message: invalid argument: Unknown permission type: cookies
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x562dc0e3371a <unknown>
+#1 0x562dc08d60a0 <unknown>
+#2 0x562dc08bd126 <unknown>
+#3 0x562dc08bbbba <unknown>
+#4 0x562dc08bc31f <unknown>
+#5 0x562dc08bc274 <unknown>
+#6 0x562dc08da2df <unknown>
+#7 0x562dc097f5ca <unknown>
+#8 0x562dc094d3a2 <unknown>
+#9 0x562dc09732a0 <unknown>
+#10 0x562dc094d173 <unknown>
+#11 0x562dc0919d4b <unknown>
+#12 0x562dc091a9b1 <unknown>
+#13 0x562dc0df88cb <unknown>
+#14 0x562dc0dfc7ca <unknown>
+#15 0x562dc0de0622 <unknown>
+#16 0x562dc0dfd354 <unknown>
+#17 0x562dc0dc545f <unknown>
+#18 0x562dc0e214f8 <unknown>
+#19 0x562dc0e216d6 <unknown>
+#20 0x562dc0e32586 <unknown>
+#21 0x7f75aefededa <unknown>
+#22 0x7f75af075ac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 144, in submit_form
+    driver.execute_cdp_cmd(
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 145, in execute_cdp_cmd
+    return super().execute_cdp_cmd(cmd, cmd_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 420, in execute_cdp_cmd
+    return self.execute("executeCdpCommand", {"cmd": cmd, "params": cmd_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument: Unknown permission type: cookies
+  (Session info: chrome=136.0.7103.113)
+Stacktrace:
+#0 0x562dc0e3371a <unknown>
+#1 0x562dc08d60a0 <unknown>
+#2 0x562dc08bd126 <unknown>
+#3 0x562dc08bbbba <unknown>
+#4 0x562dc08bc31f <unknown>
+#5 0x562dc08bc274 <unknown>
+#6 0x562dc08da2df <unknown>
+#7 0x562dc097f5ca <unknown>
+#8 0x562dc094d3a2 <unknown>
+#9 0x562dc09732a0 <unknown>
+#10 0x562dc094d173 <unknown>
+#11 0x562dc0919d4b <unknown>
+#12 0x562dc091a9b1 <unknown>
+#13 0x562dc0df88cb <unknown>
+#14 0x562dc0dfc7ca <unknown>
+#15 0x562dc0de0622 <unknown>
+#16 0x562dc0dfd354 <unknown>
+#17 0x562dc0dc545f <unknown>
+#18 0x562dc0e214f8 <unknown>
+#19 0x562dc0e216d6 <unknown>
+#20 0x562dc0e32586 <unknown>
+#21 0x7f75aefededa <unknown>
+#22 0x7f75af075ac4 clone
+
+2025-05-26 19:15:19,005 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:16:04,755 INFO: Starting contest submission scheduler...
+2025-05-26 19:16:04,755 INFO: Running scheduled form submission...
+2025-05-26 19:16:04,757 INFO: Selected address: example@example.com (used 7 times)
+2025-05-26 19:16:18,646 INFO: Successfully uploaded and moved: baby3.jpg
+2025-05-26 19:16:38,759 ERROR: Form submission failed: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55b3381a171a <unknown>
+#1 0x55b337c440a0 <unknown>
+#2 0x55b337c576eb <unknown>
+#3 0x55b337c564a2 <unknown>
+#4 0x55b337c4b5f9 <unknown>
+#5 0x55b337c4b725 <unknown>
+#6 0x55b337c4984f <unknown>
+#7 0x55b337c4d857 <unknown>
+#8 0x55b337ce22de <unknown>
+#9 0x55b337cbb3a2 <unknown>
+#10 0x55b337ce12a0 <unknown>
+#11 0x55b337cbb173 <unknown>
+#12 0x55b337c87d4b <unknown>
+#13 0x55b337c889b1 <unknown>
+#14 0x55b3381668cb <unknown>
+#15 0x55b33816a7ca <unknown>
+#16 0x55b33814e622 <unknown>
+#17 0x55b33816b354 <unknown>
+#18 0x55b33813345f <unknown>
+#19 0x55b33818f4f8 <unknown>
+#20 0x55b33818f6d6 <unknown>
+#21 0x55b3381a0586 <unknown>
+#22 0x7efc89df4eda <unknown>
+#23 0x7efc89e7cac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 145, in submit_form
+    driver.execute_script("arguments[0].click();", submit_btn)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 544, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55b3381a171a <unknown>
+#1 0x55b337c440a0 <unknown>
+#2 0x55b337c576eb <unknown>
+#3 0x55b337c564a2 <unknown>
+#4 0x55b337c4b5f9 <unknown>
+#5 0x55b337c4b725 <unknown>
+#6 0x55b337c4984f <unknown>
+#7 0x55b337c4d857 <unknown>
+#8 0x55b337ce22de <unknown>
+#9 0x55b337cbb3a2 <unknown>
+#10 0x55b337ce12a0 <unknown>
+#11 0x55b337cbb173 <unknown>
+#12 0x55b337c87d4b <unknown>
+#13 0x55b337c889b1 <unknown>
+#14 0x55b3381668cb <unknown>
+#15 0x55b33816a7ca <unknown>
+#16 0x55b33814e622 <unknown>
+#17 0x55b33816b354 <unknown>
+#18 0x55b33813345f <unknown>
+#19 0x55b33818f4f8 <unknown>
+#20 0x55b33818f6d6 <unknown>
+#21 0x55b3381a0586 <unknown>
+#22 0x7efc89df4eda <unknown>
+#23 0x7efc89e7cac4 clone
+
+2025-05-26 19:16:38,852 ERROR: Error during form submission: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55b3381a171a <unknown>
+#1 0x55b337c440a0 <unknown>
+#2 0x55b337c576eb <unknown>
+#3 0x55b337c564a2 <unknown>
+#4 0x55b337c4b5f9 <unknown>
+#5 0x55b337c4b725 <unknown>
+#6 0x55b337c4984f <unknown>
+#7 0x55b337c4d857 <unknown>
+#8 0x55b337ce22de <unknown>
+#9 0x55b337cbb3a2 <unknown>
+#10 0x55b337ce12a0 <unknown>
+#11 0x55b337cbb173 <unknown>
+#12 0x55b337c87d4b <unknown>
+#13 0x55b337c889b1 <unknown>
+#14 0x55b3381668cb <unknown>
+#15 0x55b33816a7ca <unknown>
+#16 0x55b33814e622 <unknown>
+#17 0x55b33816b354 <unknown>
+#18 0x55b33813345f <unknown>
+#19 0x55b33818f4f8 <unknown>
+#20 0x55b33818f6d6 <unknown>
+#21 0x55b3381a0586 <unknown>
+#22 0x7efc89df4eda <unknown>
+#23 0x7efc89e7cac4 clone
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 145, in submit_form
+    driver.execute_script("arguments[0].click();", submit_btn)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 544, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found
+  (Session info: chrome=136.0.7103.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x55b3381a171a <unknown>
+#1 0x55b337c440a0 <unknown>
+#2 0x55b337c576eb <unknown>
+#3 0x55b337c564a2 <unknown>
+#4 0x55b337c4b5f9 <unknown>
+#5 0x55b337c4b725 <unknown>
+#6 0x55b337c4984f <unknown>
+#7 0x55b337c4d857 <unknown>
+#8 0x55b337ce22de <unknown>
+#9 0x55b337cbb3a2 <unknown>
+#10 0x55b337ce12a0 <unknown>
+#11 0x55b337cbb173 <unknown>
+#12 0x55b337c87d4b <unknown>
+#13 0x55b337c889b1 <unknown>
+#14 0x55b3381668cb <unknown>
+#15 0x55b33816a7ca <unknown>
+#16 0x55b33814e622 <unknown>
+#17 0x55b33816b354 <unknown>
+#18 0x55b33813345f <unknown>
+#19 0x55b33818f4f8 <unknown>
+#20 0x55b33818f6d6 <unknown>
+#21 0x55b3381a0586 <unknown>
+#22 0x7efc89df4eda <unknown>
+#23 0x7efc89e7cac4 clone
+
+2025-05-26 19:16:38,854 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:16:41,771 INFO: Starting contest submission scheduler...
+2025-05-26 19:16:41,771 INFO: Running scheduled form submission...
+2025-05-26 19:16:41,773 INFO: Selected address: example@example.com (used 9 times)
+2025-05-26 19:16:52,527 ERROR: No fresh receipts found.
+2025-05-26 19:16:52,527 ERROR: Form submission failed: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 136, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 45, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 19:16:52,631 ERROR: Error during form submission: No fresh receipts found.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 30, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 136, in submit_form
+    upload_receipt(driver)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 45, in upload_receipt
+    raise FileNotFoundError("No fresh receipts found.")
+FileNotFoundError: No fresh receipts found.
+2025-05-26 19:16:52,632 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:17:04,011 INFO: Starting contest submission scheduler...
+2025-05-26 19:17:04,011 INFO: Running scheduled form submission...
+2025-05-26 19:17:04,013 INFO: Selected address: example@example.com (used 8 times)
+2025-05-26 19:17:17,937 INFO: Successfully uploaded and moved: baby.jpg
+2025-05-26 19:19:00,020 INFO: Form submitted.
+2025-05-26 19:19:05,021 ERROR: Could not find result video: 'bytes' object has no attribute 'presence_of_element_located'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 166, in check_result_video
+    EC.presence_of_element_located((By.CSS_SELECTOR, "video.winningvideo"))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'presence_of_element_located'
+2025-05-26 19:19:05,023 INFO: Result video detected: error
+2025-05-26 19:19:05,142 INFO: Submission completed successfully.
+2025-05-26 19:19:05,142 INFO: No scheduled jobs found. Exiting.
+2025-05-26 19:22:22,595 INFO: Starting contest submission scheduler...
+2025-05-26 19:22:22,595 INFO: Running scheduled form submission...
+2025-05-26 19:22:22,597 INFO: Selected address: example@example.com (used 2 times)
+2025-05-26 19:22:36,473 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-26 19:23:50,185 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/d1d5370047bc5518217fae44b6510f52
+2025-05-26 19:23:50,186 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedbde1cf90>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/d1d5370047bc5518217fae44b6510f52
+2025-05-26 19:23:50,186 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedbde1d7d0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/d1d5370047bc5518217fae44b6510f52
+2025-05-26 19:24:08,797 INFO: Starting contest submission scheduler...
+2025-05-26 19:24:08,797 INFO: Running scheduled form submission...
+2025-05-26 19:24:08,799 INFO: Selected address: example@example.com (used 3 times)
+2025-05-26 19:24:23,656 INFO: Successfully uploaded and moved: baby.jpg

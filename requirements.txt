@@ -1,0 +1,6 @@
+selenium~=4.33.0
+schedule~=1.2.2
+pandas
+python-dotenv
+beautifulsoup4~=4.13.4
+msvcrt
