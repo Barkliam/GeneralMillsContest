@@ -1,7 +1,7 @@
 import csv
-import os
-import sys
 import logging
+import os
+
 # Conditional import for file locking
 if os.name == 'nt':  # Windows
     import msvcrt
@@ -18,6 +18,7 @@ logging.basicConfig(
 
 CSV_PATH = "data/addresses.csv"
 MAX_USES = 10
+
 
 class LockedFile:
     def __init__(self, path, mode):
@@ -41,6 +42,7 @@ class LockedFile:
             else:
                 fcntl.flock(self.file, fcntl.LOCK_UN)
             self.file.close()
+
 
 def get_address():
     if not os.path.exists(CSV_PATH):

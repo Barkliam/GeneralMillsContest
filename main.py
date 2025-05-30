@@ -1,8 +1,10 @@
-import time
 import logging
+import time
+
 import schedule
-from form_filler import submit_form
+
 from address_tracker import get_address
+from form_filler import submit_form
 
 # Setup logging to file and console
 logger = logging.getLogger()
@@ -22,6 +24,7 @@ console_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
 console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
+
 def form_submission_job():
     logging.info("Running scheduled form submission...")
     try:
@@ -34,14 +37,15 @@ def form_submission_job():
     except Exception as e:
         logging.error(f"Error during form submission: {e}", exc_info=True)
 
+
 def main():
     logging.info("Starting contest submission scheduler...")
 
     form_submission_job()
     # Schedule job at 6:00, 7:00, and 8:00
-    #schedule.every().day.at("06:00").do(form_submission_job)
-    #schedule.every().day.at("07:00").do(form_submission_job)
-    #schedule.every().day.at("08:00").do(form_submission_job)
+    # schedule.every().day.at("06:00").do(form_submission_job)
+    # schedule.every().day.at("07:00").do(form_submission_job)
+    # schedule.every().day.at("08:00").do(form_submission_job)
 
     if not schedule.jobs:
         logging.info("No scheduled jobs found. Exiting.")
@@ -53,6 +57,7 @@ def main():
             time.sleep(5)
     except KeyboardInterrupt:
         logging.info("Scheduler stopped by user.")
+
 
 if __name__ == "__main__":
     main()

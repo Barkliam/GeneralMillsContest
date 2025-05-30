@@ -1,0 +1,230 @@
+2025-05-30 20:10:47,622 INFO: Starting contest submission scheduler...
+2025-05-30 20:10:47,622 INFO: Running scheduled form submission...
+2025-05-30 20:10:47,623 INFO: Selected address: example1@example.com (used 9 times)
+2025-05-30 20:11:06,545 INFO: Form submitted.
+2025-05-30 20:11:27,327 INFO: Submission completed successfully.
+2025-05-30 20:11:27,327 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:11:34,066 INFO: Starting contest submission scheduler...
+2025-05-30 20:11:34,066 INFO: Running scheduled form submission...
+2025-05-30 20:11:34,067 INFO: Selected address: examhple@example.com (used 6 times)
+2025-05-30 20:11:54,054 INFO: Form submitted.
+2025-05-30 20:12:04,066 ERROR: Form submission failed: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 186, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 196, in submit_form
+    error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+2025-05-30 20:12:04,993 ERROR: Error during form submission: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 186, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 196, in submit_form
+    error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+2025-05-30 20:12:04,994 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:13:22,040 INFO: Starting contest submission scheduler...
+2025-05-30 20:13:22,040 INFO: Running scheduled form submission...
+2025-05-30 20:13:22,040 INFO: Selected address: examhpl0e@example.com (used 7 times)
+2025-05-30 20:13:42,261 INFO: Form submitted.
+2025-05-30 20:13:52,277 ERROR: Form submission failed: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 186, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 196, in submit_form
+    error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+2025-05-30 20:13:53,072 ERROR: Error during form submission: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 186, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 196, in submit_form
+    error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 914, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .jq-toast-wrap; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+2025-05-30 20:13:53,073 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:14:35,382 INFO: Starting contest submission scheduler...
+2025-05-30 20:14:35,382 INFO: Running scheduled form submission...
+2025-05-30 20:14:35,382 INFO: Selected address: examh9pl0e@example.com (used 8 times)
+2025-05-30 20:14:54,206 INFO: Form submitted.
+2025-05-30 20:16:40,099 INFO: Submission completed successfully.
+2025-05-30 20:16:40,099 INFO: No scheduled jobs found. Exiting.
