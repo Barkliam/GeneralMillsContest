@@ -228,3 +228,68 @@ dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
 2025-05-30 20:14:54,206 INFO: Form submitted.
 2025-05-30 20:16:40,099 INFO: Submission completed successfully.
 2025-05-30 20:16:40,099 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:19:23,175 INFO: Starting contest submission scheduler...
+2025-05-30 20:19:23,175 INFO: Running scheduled form submission...
+2025-05-30 20:19:23,177 WARNING: No available address to use.
+2025-05-30 20:19:23,177 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:19:23,179 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:19:23,182 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:19:43,970 INFO: Starting contest submission scheduler...
+2025-05-30 20:19:43,971 INFO: Running scheduled form submission...
+2025-05-30 20:19:43,973 WARNING: No available address to use.
+2025-05-30 20:19:43,973 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:19:43,974 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:19:43,978 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:19:50,177 INFO: Starting contest submission scheduler...
+2025-05-30 20:19:50,177 INFO: Running scheduled form submission...
+2025-05-30 20:19:50,179 INFO: Selected address: examh9ppl0e@example.com (used 9 times)
+2025-05-30 20:36:41,829 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f09c4e4b110>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6e8992b6-e1ae-43e5-99c9-4b9aad8e7278
+2025-05-30 20:36:41,830 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f09c4ec1e50>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6e8992b6-e1ae-43e5-99c9-4b9aad8e7278
+2025-05-30 20:36:41,830 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f09c4ebfed0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6e8992b6-e1ae-43e5-99c9-4b9aad8e7278
+2025-05-30 20:36:44,932 INFO: Starting contest submission scheduler...
+2025-05-30 20:36:44,933 INFO: Running scheduled form submission...
+2025-05-30 20:36:44,933 WARNING: No available address to use.
+2025-05-30 20:36:44,933 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:36:44,934 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:36:44,935 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:37:02,382 INFO: Starting contest submission scheduler...
+2025-05-30 20:37:02,382 INFO: Running scheduled form submission...
+2025-05-30 20:37:02,383 INFO: Selected address: examh9popl0e@example.com (used 10 times)
+2025-05-30 20:37:22,375 INFO: Form submitted.
+2025-05-30 20:39:02,386 INFO: not winner
+2025-05-30 20:39:07,611 INFO: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5413/SID/a5b3c111-55c7-4b99-8b4e-0aeda8fd7299?UserIDe=aiswSbhQAizkStqVT5m5%2bQ%3d%3d
+2025-05-30 20:39:08,364 INFO: Submission completed successfully.
+2025-05-30 20:39:08,364 INFO: No scheduled jobs found. Exiting.

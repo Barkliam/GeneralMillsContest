@@ -4,7 +4,6 @@ import tempfile
 import time
 from datetime import datetime
 
-import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
@@ -13,6 +12,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+#TODO log to file but also print to console
 # Logging setup
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -21,62 +21,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
-
-
-def find_element_endswith_id(driver, suffix):
-    elems = driver.find_elements(By.CSS_SELECTOR, f"[id$='{suffix}']")
-    if not elems:
-        raise NoSuchElementException(f"Element with ID suffix '{suffix}' not found.")
-    return elems[0]
-
-
-def manual_receipt_upload(driver, receipt_path):
-    upload_url = "https://gmfreegroceries.ca/DesktopModules/DnnSharp/ActionForm/UploadFile.ashx"
-    params = {
-        "_portalId": "7",
-        "openMode": "Always",
-        "_tabId": "388",
-        "_aliasid": "41",
-        "_mid": "1537",
-        "language": "en-CA",
-        "fieldid": "655"
-    }
-
-    # Extract cookies from Selenium driver
-    selenium_cookies = driver.get_cookies()
-    session = requests.Session()
-    for cookie in selenium_cookies:
-        session.cookies.set(cookie['name'], cookie['value'])
-
-    # Grab token from page
-    token_element = driver.find_element(By.NAME, "__RequestVerificationToken")
-    request_verification_token = token_element.get_attribute("value")
-
-    headers = {
-        "User-Agent": driver.execute_script("return navigator.userAgent;"),
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "X-Requested-With": "XMLHttpRequest",
-        "Origin": "https://gmfreegroceries.ca",
-        "Referer": "https://gmfreegroceries.ca/Enter",
-        "RequestVerificationToken": request_verification_token,
-        "ModuleId": "1537",
-        "TabId": "388",
-    }
-
-    with open(receipt_path, "rb") as f:
-        files = {
-            'file': (os.path.basename(receipt_path), f, 'application/octet-stream')
-        }
-
-        response = session.post(upload_url, headers=headers, params=params, files=files)
-
-    # Check if it worked
-    if response.status_code == 200 and "success" in response.text.lower():
-        logging.info("Manual upload successful.")
-    else:
-        logging.error(f"Manual upload failed. Status: {response.status_code}, Response: {response.text}")
-        raise Exception("Manual upload failed.")
-
 
 # TODO separate this into separate file
 def upload_receipt(driver):
@@ -98,6 +42,11 @@ def upload_receipt(driver):
     )
     upload_input.send_keys(full_path)
     time.sleep(3)
+
+    # TODO implement moving uploaded file
+    # Move file after successful upload
+    # shutil.move(full_path, os.path.join(used_dir, receipt_file))
+    # logging.info(f"Successfully uploaded and moved: {receipt_file}")
 
     # Check for upload error
     error_elements = driver.find_elements(By.CSS_SELECTOR, ".text-danger")
@@ -129,18 +78,21 @@ def submit_form(data):
     options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
     driver = get_firefox_driver()
+    #TODO fix error handling here so that all errors throw exception with info what went wrong to be logged.
     try:
         driver.get(url)
         print(driver.execute_script("return document.cookie"))
         time.sleep(5)
 
         driver.find_element(By.ID, "dnn1537FirstName").send_keys(data['FirstName'])
-        find_element_endswith_id(driver, "FirstName").send_keys(data['FirstName'])
         driver.find_element(By.ID, "dnn1537LastName").send_keys(data['LastName'])
         driver.find_element(By.ID, "dnn1537Address").send_keys(data['StreetNumber'])
         driver.find_element(By.ID, "dnn1537Unit").send_keys(data.get('Unit', ''))
         driver.find_element(By.ID, "dnn1537City").send_keys(data['City'])
         Select(driver.find_element(By.ID, "dnn1537Province")).select_by_visible_text(data['Province'])
+
+        #TODO add a space in the middle of postal code if there is not one.
+        #(e.g. "K1R6E9" -> "K1R 6E9")
         driver.find_element(By.ID, "dnn1537PostalCode").send_keys(data['PostalCode'])
         driver.find_element(By.ID, "dnn1537Email").send_keys(data['Email'])
         driver.find_element(By.ID, "dnn1537Phone").send_keys(data['Phone'])
@@ -156,49 +108,46 @@ def submit_form(data):
 
         upload_receipt(driver)
 
-        agree_checkbox = find_element_endswith_id(driver, "Agree")
-        if not agree_checkbox.is_selected():
-            agree_checkbox.click()
+        driver.find_element(By.ID, "dnn1537Agree").click()
 
-        submit_btn = find_element_endswith_id(driver, "Continue")
-        if submit_btn.is_enabled():
-            driver.execute_script("arguments[0].click();", submit_btn)
-            logging.info("Form submitted.")
-            time.sleep(100)
+        submit_btn = driver.find_element(By.ID, "dnn1537Continue")
 
-            print(driver.current_url)
-            try:
-                learn_more_button = WebDriverWait(driver, 100).until(
-                    expected_conditions.presence_of_element_located((By.XPATH, "//button[text()='LEARN MORE']"))
-                )
+        if not submit_btn.is_enabled():
+            raise Exception("Submit button is disabled. Form not submitted.")
 
-                video_element = driver.find_element(By.CSS_SELECTOR, "video.winningvideo")
-                poster_url = video_element.get_attribute('poster')
-                if "2025winner" in poster_url:
-                    print("WINNER")
+        driver.execute_script("arguments[0].click();", submit_btn)
+        logging.info("Form submitted.")
+        time.sleep(100)
 
-                elif "2025nonwinner" in poster_url:
-                    print("not winner")
+        print(driver.current_url)
+        try:
+            learn_more_button = WebDriverWait(driver, 100).until(
+                expected_conditions.presence_of_element_located((By.XPATH, "//button[text()='LEARN MORE']"))
+            )
 
-                else:
-                    print("error, unknown video found" + poster_url)
+            video_element = driver.find_element(By.CSS_SELECTOR, "video.winningvideo")
+            poster_url = video_element.get_attribute('poster')
+            if "2025winner" in poster_url:
+                logging.info("WINNER")
 
-                learn_more_button.click()
-                time.sleep(5)
-                print(driver.current_url)
+            elif "2025nonwinner" in poster_url:
+                logging.info("not winner")
 
-                # TODO implement moving uploaded file
-                # Move file after successful upload
-                # shutil.move(full_path, os.path.join(used_dir, receipt_file))
-                # logging.info(f"Successfully uploaded and moved: {receipt_file}")
-            except Exception as e:
+            else:
+                logging.info("error, unknown video found" + poster_url)
 
-                error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
-                if (error_element):
-                    print("Error submitting form: " + error_element.text)
+            learn_more_button.click()
+            time.sleep(5)
+            logging.info(driver.current_url)
 
-        else:
-            logging.warning("Submit button is disabled. Form not submitted.")
+
+        except Exception as e:
+
+            error_element = driver.find_element(By.CLASS_NAME, "jq-toast-wrap")
+            if (error_element):
+                logging.info("Error submitting form: " + error_element.text)
+
+
 
     except Exception as e:
         logging.exception(f"Form submission failed: {e}")
