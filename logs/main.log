@@ -4114,3 +4114,393 @@ Exception: No available address to use. All have reached max usage or were used 
 2025-05-30 20:39:07,611 INFO: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5413/SID/a5b3c111-55c7-4b99-8b4e-0aeda8fd7299?UserIDe=aiswSbhQAizkStqVT5m5%2bQ%3d%3d
 2025-05-30 20:39:08,364 INFO: Submission completed successfully.
 2025-05-30 20:39:08,364 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:42:20,657 INFO: Starting contest submission scheduler...
+2025-05-30 20:42:20,657 INFO: Running scheduled form submission...
+2025-05-30 20:42:20,658 INFO: Selected address: examtple@example.com (used 6 times)
+2025-05-30 20:42:20,659 ERROR: Failed to initialize Firefox driver: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+2025-05-30 20:42:20,659 ERROR: Unexpected error during form submission: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+2025-05-30 20:42:20,659 ERROR: Error during form submission: Unexpected error during form submission: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 138, in submit_form
+    driver = get_firefox_driver()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 122, in get_firefox_driver
+    driver = webdriver.Firefox(options=options, firefox_profile=profile)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 265, in submit_form
+    raise Exception(error_msg)
+Exception: Unexpected error during form submission: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+2025-05-30 20:42:20,660 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:44:03,390 INFO: Starting contest submission scheduler...
+2025-05-30 20:44:03,390 INFO: Running scheduled form submission...
+2025-05-30 20:44:03,392 WARNING: No available address to use.
+2025-05-30 20:44:03,392 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:44:03,394 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:44:03,397 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:44:34,925 INFO: Starting contest submission scheduler...
+2025-05-30 20:44:34,925 INFO: Running scheduled form submission...
+2025-05-30 20:44:34,927 INFO: Selected address: examtple@example.com (used 7 times)
+2025-05-30 20:45:07,585 INFO: Starting contest submission scheduler...
+2025-05-30 20:45:07,585 INFO: Running scheduled form submission...
+2025-05-30 20:45:07,585 WARNING: No available address to use.
+2025-05-30 20:45:07,586 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:45:07,586 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:45:07,587 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:45:17,641 INFO: Starting contest submission scheduler...
+2025-05-30 20:45:17,641 INFO: Running scheduled form submission...
+2025-05-30 20:45:17,642 INFO: Selected address: examtple@example.com (used 8 times)
+2025-05-30 20:45:19,549 INFO: Firefox driver initialized successfully
+2025-05-30 20:45:19,549 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:45:27,776 INFO: Filling form fields...
+2025-05-30 20:45:28,449 INFO: Selecting preferred store: Walmart
+2025-05-30 20:45:32,932 INFO: Uploading receipt...
+2025-05-30 20:45:32,932 INFO: Attempting to upload receipt: baby2.jpg
+2025-05-30 20:45:36,019 INFO: Successfully uploaded and moved: baby2.jpg
+2025-05-30 20:45:36,240 INFO: Submitting form...
+2025-05-30 20:45:41,272 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:46:11,457 ERROR: Timeout waiting for results page
+2025-05-30 20:46:12,321 INFO: WebDriver session closed
+2025-05-30 20:46:12,321 INFO: Submission completed successfully.
+2025-05-30 20:46:12,321 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:48:03,211 INFO: Starting contest submission scheduler...
+2025-05-30 20:48:03,212 INFO: Running scheduled form submission...
+2025-05-30 20:48:03,214 INFO: Selected address: exiample1@example.com (used 10 times)
+2025-05-30 20:48:10,591 INFO: Firefox driver initialized successfully
+2025-05-30 20:48:10,591 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:48:18,864 INFO: Filling form fields...
+2025-05-30 20:48:19,571 INFO: Selecting preferred store: Walmart
+2025-05-30 20:48:24,060 INFO: Uploading receipt...
+2025-05-30 20:48:24,061 INFO: Attempting to upload receipt: baby3.jpg
+2025-05-30 20:48:27,169 INFO: Successfully uploaded and moved: baby3.jpg
+2025-05-30 20:48:27,396 INFO: Submitting form...
+2025-05-30 20:53:37,289 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:54:07,505 ERROR: Timeout waiting for results page
+2025-05-30 20:54:07,833 INFO: WebDriver session closed
+2025-05-30 20:54:07,833 INFO: Submission completed successfully.
+2025-05-30 20:54:07,833 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:55:22,187 INFO: Starting contest submission scheduler...
+2025-05-30 20:55:22,187 INFO: Running scheduled form submission...
+2025-05-30 20:55:22,188 WARNING: No available address to use.
+2025-05-30 20:55:22,188 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:55:22,189 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:55:22,189 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:55:34,890 INFO: Starting contest submission scheduler...
+2025-05-30 20:55:34,890 INFO: Running scheduled form submission...
+2025-05-30 20:55:34,890 WARNING: No available address to use.
+2025-05-30 20:55:34,890 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:55:34,891 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:55:34,891 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:55:44,540 INFO: Starting contest submission scheduler...
+2025-05-30 20:55:44,540 INFO: Running scheduled form submission...
+2025-05-30 20:55:44,541 INFO: Selected address: exiample1@example.com (used 1 times)
+2025-05-30 20:55:46,381 INFO: Firefox driver initialized successfully
+2025-05-30 20:55:46,381 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:55:54,494 INFO: Filling form fields...
+2025-05-30 20:55:55,153 INFO: Selecting preferred store: Walmart
+2025-05-30 20:55:59,626 INFO: Uploading receipt...
+2025-05-30 20:55:59,626 INFO: Attempting to upload receipt: baby.jpg
+2025-05-30 20:56:02,930 INFO: Submitting form...
+2025-05-30 20:56:07,960 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:56:07,977 INFO: Not a winner this time
+2025-05-30 20:56:07,981 ERROR: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 20:56:08,770 INFO: WebDriver session closed
+2025-05-30 20:56:08,770 ERROR: Error during form submission: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 230, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 268, in submit_form
+    raise Exception(error_msg)
+Exception: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 20:56:08,772 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:57:19,065 INFO: Starting contest submission scheduler...
+2025-05-30 20:57:19,065 INFO: Running scheduled form submission...
+2025-05-30 20:57:19,065 WARNING: No available address to use.
+2025-05-30 20:57:19,066 ERROR: Failed to get address: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:57:19,066 ERROR: Error during form submission: No available address to use. All have reached max usage or were used today.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 31, in form_submission_job
+    data = get_address()
+           ^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/address_tracker.py", line 78, in get_address
+    raise Exception("No available address to use. All have reached max usage or were used today.")
+Exception: No available address to use. All have reached max usage or were used today.
+2025-05-30 20:57:19,066 INFO: No scheduled jobs found. Exiting.
+2025-05-30 20:57:27,550 INFO: Starting contest submission scheduler...
+2025-05-30 20:57:27,550 INFO: Running scheduled form submission...
+2025-05-30 20:57:27,550 INFO: Selected address: exiample1@example.com (used 2 times)
+2025-05-30 20:57:29,233 INFO: Firefox driver initialized successfully
+2025-05-30 20:57:29,233 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:57:37,572 INFO: Filling form fields...
+2025-05-30 20:57:38,227 INFO: Selecting preferred store: Walmart
+2025-05-30 20:57:42,712 INFO: Uploading receipt...
+2025-05-30 20:57:42,712 INFO: Attempting to upload receipt: baby.jpg
+2025-05-30 20:57:46,021 INFO: Submitting form...
+2025-05-30 20:57:51,051 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:58:21,218 ERROR: Timeout waiting for results page
+2025-05-30 20:58:21,232 ERROR: Form submission error: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+2025-05-30 20:58:21,232 ERROR: Unexpected error during form submission: Form submission failed: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+2025-05-30 20:58:21,993 INFO: WebDriver session closed
+2025-05-30 20:58:21,993 ERROR: Error during form submission: Unexpected error during form submission: Form submission failed: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 210, in submit_form
+    learn_more_button = WebDriverWait(driver, 30).until(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:552:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 246, in submit_form
+    raise Exception(f"Form submission failed: {error_text}")
+Exception: Form submission failed: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 272, in submit_form
+    raise Exception(error_msg)
+Exception: Unexpected error during form submission: Form submission failed: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+2025-05-30 20:58:21,994 INFO: No scheduled jobs found. Exiting.
+2025-05-30 21:00:30,592 INFO: Starting contest submission scheduler...
+2025-05-30 21:00:30,592 INFO: Running scheduled form submission...
+2025-05-30 21:00:30,593 INFO: Selected address: exiample1f@example.com (used 3 times)
+2025-05-30 21:00:32,530 INFO: Firefox driver initialized successfully
+2025-05-30 21:00:32,530 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:00:40,869 INFO: Filling form fields...
+2025-05-30 21:00:41,568 INFO: Selecting preferred store: Walmart
+2025-05-30 21:00:46,042 INFO: Uploading receipt...
+2025-05-30 21:00:46,042 INFO: Attempting to upload receipt: baby.jpg
+2025-05-30 21:00:49,336 INFO: Submitting form...
+2025-05-30 21:00:54,402 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 21:00:54,410 INFO: Not a winner this time
+2025-05-30 21:00:54,415 ERROR: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 21:00:55,223 INFO: WebDriver session closed
+2025-05-30 21:00:55,223 ERROR: Error during form submission: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 230, in submit_form
+    learn_more_button.click()
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 121, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 574, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 447, in execute
+    self.error_handler.check_response(response)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/.venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/main.py", line 33, in form_submission_job
+    submit_form(data)
+  File "/home/barkliam/PycharmProjects/GeneralMillsContest/form_filler.py", line 268, in submit_form
+    raise Exception(error_msg)
+Exception: WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 21:00:55,225 INFO: No scheduled jobs found. Exiting.
+2025-05-30 21:02:19,439 INFO: Starting contest submission scheduler...
+2025-05-30 21:02:19,439 INFO: Running scheduled form submission...
+2025-05-30 21:02:19,440 INFO: Selected address: exiamplae1f@example.com (used 4 times)
+2025-05-30 21:02:21,252 INFO: Firefox driver initialized successfully
+2025-05-30 21:02:21,253 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:02:29,476 INFO: Filling form fields...
+2025-05-30 21:02:30,142 INFO: Selecting preferred store: Walmart
+2025-05-30 21:02:34,609 INFO: Uploading receipt...
+2025-05-30 21:02:34,609 INFO: Attempting to upload receipt: baby.jpg
+2025-05-30 21:02:37,911 INFO: Submitting form...
+2025-05-30 21:02:42,939 INFO: Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 21:02:54,635 INFO: Not a winner this time
+2025-05-30 21:02:59,850 INFO: Final URL: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5423/SID/fc01fa69-7610-4d3e-91e0-76185a025395?UserIDe=OPDh6wwcOXz5y9yVWrbJeg%3d%3d
+2025-05-30 21:02:59,850 INFO: Form submission completed successfully
+2025-05-30 21:03:00,603 INFO: WebDriver session closed
+2025-05-30 21:03:00,612 INFO: Submission completed successfully.
+2025-05-30 21:03:00,613 INFO: No scheduled jobs found. Exiting.
+2025-05-30 21:12:23,492 INFO: Starting contest submission scheduler...
+2025-05-30 21:12:23,492 INFO: Running scheduled form submission...
+2025-05-30 21:12:23,493 INFO: Selected address: edxeample@example.com (used 5 times)
+2025-05-30 21:12:25,552 INFO: Firefox driver initialized successfully
+2025-05-30 21:12:25,552 INFO: Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:12:33,796 INFO: Filling form fields...
+2025-05-30 21:12:34,442 INFO: Selecting preferred store: Walmart
+2025-05-30 21:12:36,911 INFO: Uploading receipt...
+2025-05-30 21:12:36,911 INFO: Attempting to upload receipt: baby.jpg
+2025-05-30 21:12:40,255 INFO: Submitting form...
+2025-05-30 21:12:57,487 INFO: Not a winner this time
+2025-05-30 21:13:02,731 INFO: Final URL: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5424/SID/8687daff-0ed0-44e4-8a1b-dce132d31818?UserIDe=skm6%2b79wEXI9ZscWVdd7cA%3d%3d
+2025-05-30 21:13:02,731 INFO: Form submission completed successfully
+2025-05-30 21:13:03,476 INFO: WebDriver session closed
+2025-05-30 21:13:03,476 INFO: Submission completed successfully.
+2025-05-30 21:13:03,476 INFO: No scheduled jobs found. Exiting.

@@ -3836,3 +3836,108 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'WebElement' object has no attribute 'exists'
 2025-05-30 19:36:57,894 [INFO] No scheduled jobs found. Exiting.
+2025-05-30 20:42:20,659 [ERROR] Failed to initialize Firefox driver: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+2025-05-30 20:42:20,659 [ERROR] Unexpected error during form submission: WebDriver.__init__() got an unexpected keyword argument 'firefox_profile'
+2025-05-30 20:45:19,549 [INFO] Firefox driver initialized successfully
+2025-05-30 20:45:19,549 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:45:27,776 [INFO] Filling form fields...
+2025-05-30 20:45:28,449 [INFO] Selecting preferred store: Walmart
+2025-05-30 20:45:32,932 [INFO] Uploading receipt...
+2025-05-30 20:45:32,932 [INFO] Attempting to upload receipt: baby2.jpg
+2025-05-30 20:45:36,019 [INFO] Successfully uploaded and moved: baby2.jpg
+2025-05-30 20:45:36,240 [INFO] Submitting form...
+2025-05-30 20:45:41,272 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:46:11,457 [ERROR] Timeout waiting for results page
+2025-05-30 20:46:12,321 [INFO] WebDriver session closed
+2025-05-30 20:48:10,591 [INFO] Firefox driver initialized successfully
+2025-05-30 20:48:10,591 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:48:18,864 [INFO] Filling form fields...
+2025-05-30 20:48:19,571 [INFO] Selecting preferred store: Walmart
+2025-05-30 20:48:24,060 [INFO] Uploading receipt...
+2025-05-30 20:48:24,061 [INFO] Attempting to upload receipt: baby3.jpg
+2025-05-30 20:48:27,169 [INFO] Successfully uploaded and moved: baby3.jpg
+2025-05-30 20:48:27,396 [INFO] Submitting form...
+2025-05-30 20:53:37,289 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:54:07,505 [ERROR] Timeout waiting for results page
+2025-05-30 20:54:07,833 [INFO] WebDriver session closed
+2025-05-30 20:55:46,381 [INFO] Firefox driver initialized successfully
+2025-05-30 20:55:46,381 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:55:54,494 [INFO] Filling form fields...
+2025-05-30 20:55:55,153 [INFO] Selecting preferred store: Walmart
+2025-05-30 20:55:59,626 [INFO] Uploading receipt...
+2025-05-30 20:55:59,626 [INFO] Attempting to upload receipt: baby.jpg
+2025-05-30 20:56:02,930 [INFO] Submitting form...
+2025-05-30 20:56:07,960 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:56:07,977 [INFO] Not a winner this time
+2025-05-30 20:56:07,981 [ERROR] WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 20:56:08,770 [INFO] WebDriver session closed
+2025-05-30 20:57:29,233 [INFO] Firefox driver initialized successfully
+2025-05-30 20:57:29,233 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 20:57:37,572 [INFO] Filling form fields...
+2025-05-30 20:57:38,227 [INFO] Selecting preferred store: Walmart
+2025-05-30 20:57:42,712 [INFO] Uploading receipt...
+2025-05-30 20:57:42,712 [INFO] Attempting to upload receipt: baby.jpg
+2025-05-30 20:57:46,021 [INFO] Submitting form...
+2025-05-30 20:57:51,051 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 20:58:21,218 [ERROR] Timeout waiting for results page
+2025-05-30 20:58:21,232 [ERROR] Form submission error: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+2025-05-30 20:58:21,232 [ERROR] Unexpected error during form submission: Form submission failed: Bob5, you or someone in your household appear to have entered this contest in the last 24 hours. 
+Please return after 24 hours to enter a NEW receipt showing a NEW purchase of a qualifying product.
+2025-05-30 20:58:21,993 [INFO] WebDriver session closed
+2025-05-30 21:00:32,530 [INFO] Firefox driver initialized successfully
+2025-05-30 21:00:32,530 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:00:40,869 [INFO] Filling form fields...
+2025-05-30 21:00:41,568 [INFO] Selecting preferred store: Walmart
+2025-05-30 21:00:46,042 [INFO] Uploading receipt...
+2025-05-30 21:00:46,042 [INFO] Attempting to upload receipt: baby.jpg
+2025-05-30 21:00:49,336 [INFO] Submitting form...
+2025-05-30 21:00:54,402 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 21:00:54,410 [INFO] Not a winner this time
+2025-05-30 21:00:54,415 [ERROR] WebDriver error during form submission: Message: Element <button id="dnn1537close" class="
+                btn submit form-button af-btn-loading
+                 btn-normal btn-info  delay-button" type="button"> could not be scrolled into view
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:199:5
+ElementNotInteractableError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:368:5
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:165:11
+interaction.clickElement@chrome://remote/content/marionette/interaction.sys.mjs:134:11
+clickElement@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:297:29
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:180:31
+
+2025-05-30 21:00:55,223 [INFO] WebDriver session closed
+2025-05-30 21:02:21,252 [INFO] Firefox driver initialized successfully
+2025-05-30 21:02:21,253 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:02:29,476 [INFO] Filling form fields...
+2025-05-30 21:02:30,142 [INFO] Selecting preferred store: Walmart
+2025-05-30 21:02:34,609 [INFO] Uploading receipt...
+2025-05-30 21:02:34,609 [INFO] Attempting to upload receipt: baby.jpg
+2025-05-30 21:02:37,911 [INFO] Submitting form...
+2025-05-30 21:02:42,939 [INFO] Current URL after submission: https://gmfreegroceries.ca/Enter
+2025-05-30 21:02:54,635 [INFO] Not a winner this time
+2025-05-30 21:02:59,850 [INFO] Final URL: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5423/SID/fc01fa69-7610-4d3e-91e0-76185a025395?UserIDe=OPDh6wwcOXz5y9yVWrbJeg%3d%3d
+2025-05-30 21:02:59,850 [INFO] Form submission completed successfully
+2025-05-30 21:03:00,603 [INFO] WebDriver session closed
+2025-05-30 21:12:25,552 [INFO] Firefox driver initialized successfully
+2025-05-30 21:12:25,552 [INFO] Navigating to: https://gmfreegroceries.ca/Enter
+2025-05-30 21:12:33,796 [INFO] Filling form fields...
+2025-05-30 21:12:34,442 [INFO] Selecting preferred store: Walmart
+2025-05-30 21:12:36,911 [INFO] Uploading receipt...
+2025-05-30 21:12:36,911 [INFO] Attempting to upload receipt: baby.jpg
+2025-05-30 21:12:40,255 [INFO] Submitting form...
+2025-05-30 21:12:57,487 [INFO] Not a winner this time
+2025-05-30 21:13:02,731 [INFO] Final URL: https://gmfreegroceries.ca/Thank-you/Redirect/thanks/UserID/5424/SID/8687daff-0ed0-44e4-8a1b-dce132d31818?UserIDe=skm6%2b79wEXI9ZscWVdd7cA%3d%3d
+2025-05-30 21:13:02,731 [INFO] Form submission completed successfully
+2025-05-30 21:13:03,476 [INFO] WebDriver session closed
