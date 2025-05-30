@@ -1,5 +1,7 @@
 import logging
+import os
 import time
+from datetime import datetime
 
 import schedule
 
@@ -10,8 +12,18 @@ from form_filler import submit_form
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+# Date-based log file
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+log_filename = os.path.join(log_dir, f"{datetime.today().date()}.log")
+
+# Insert clear break if file already exists
+if os.path.exists(log_filename):
+    with open(log_filename, "a", encoding="utf-8") as f:
+        f.write("\n" + "=" * 60 + f"\n=== NEW SESSION STARTED: {datetime.now()} ===\n" + "=" * 60 + "\n")
+
 # File handler
-file_handler = logging.FileHandler("logs/main.log")
+file_handler = logging.FileHandler(log_filename)
 file_handler.setLevel(logging.INFO)
 file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
@@ -43,9 +55,9 @@ def main():
 
     form_submission_job()
     # Schedule job at 6:00, 7:00, and 8:00
-    # schedule.every().day.at("06:00").do(form_submission_job)
-    # schedule.every().day.at("07:00").do(form_submission_job)
-    # schedule.every().day.at("08:00").do(form_submission_job)
+    schedule.every().day.at("06:01").do(form_submission_job)
+    schedule.every().day.at("07:01").do(form_submission_job)
+    schedule.every().day.at("08:01").do(form_submission_job)
 
     if not schedule.jobs:
         logging.info("No scheduled jobs found. Exiting.")

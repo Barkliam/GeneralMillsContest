@@ -1,5 +1,4 @@
 import logging
-import os
 import tempfile
 import time
 from datetime import datetime
@@ -12,68 +11,21 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
-# Logging setup - log to both file and console
-LOG_DIR = "logs"
-os.makedirs(LOG_DIR, exist_ok=True)
+from receipt_manager import ReceiptManager
 
-# Create logger
+receipt_manager = ReceiptManager()
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler(os.path.join(LOG_DIR, "form_filler.log"))
-file_handler.setLevel(logging.INFO)
-formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 
 
-# TODO separate file reading and writing to separate file and create an instance of it. Then return only the path to be used here. Tell the instance to move the file once the form is submitted
 def upload_receipt(driver):
-    """Upload a receipt file from the fresh directory and move it to used directory."""
-    fresh_dir = "data/receipts/fresh"
-    used_dir = "data/receipts/used"
-
-    # Ensure directories exist
-    os.makedirs(fresh_dir, exist_ok=True)
-    os.makedirs(used_dir, exist_ok=True)
-
-    try:
-        receipts = [f for f in os.listdir(fresh_dir) if os.path.isfile(os.path.join(fresh_dir, f))]
-        if not receipts:
-            error_msg = "No fresh receipts found in directory."
-            logger.error(error_msg)
-            raise FileNotFoundError(error_msg)
-
-        receipt_file = receipts[0]
-        full_path = os.path.abspath(os.path.join(fresh_dir, receipt_file))
-
-        logger.info(f"Attempting to upload receipt: {receipt_file}")
-
-        upload_input = WebDriverWait(driver, 10).until(
-            expected_conditions.presence_of_element_located(
-                (By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']"))
-        )
-        upload_input.send_keys(full_path)
-        time.sleep(3)
-
-        # Check for upload error
-        error_elements = driver.find_elements(By.CSS_SELECTOR, ".text-danger")
-        for elem in error_elements:
-            if elem.is_displayed() and elem.text.strip():
-                error_msg = f"Upload error for {receipt_file}: {elem.text.strip()}"
-                logger.error(error_msg)
-                raise Exception(error_msg)
-
-        # Move file after successful upload
-        # destination_path = os.path.join(used_dir, receipt_file)
-        # shutil.move(full_path, destination_path)
-        # logger.info(f"Successfully uploaded and moved: {receipt_file}")
-
-    except FileNotFoundError as e:
-        logger.error(f"File not found error: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Receipt upload failed: {e}")
-        raise
+    receipt_path = receipt_manager.get_next_receipt()
+    upload_input = WebDriverWait(driver, 10).until(
+        expected_conditions.presence_of_element_located(
+            (By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']"))
+    )
+    upload_input.send_keys(receipt_path)
+    logger.info(f"Uploading receipt: {receipt_path}")
+    time.sleep(3)
 
 
 def get_firefox_driver():
@@ -92,7 +44,6 @@ def get_firefox_driver():
         profile.set_preference("dom.webnotifications.enabled", False)
 
         driver = webdriver.Firefox(options=options)
-        logger.info("Firefox driver initialized successfully")
         return driver
 
     except Exception as e:
@@ -106,6 +57,8 @@ def submit_form(data):
     preferred_store = "Walmart"  # Change this to whichever store you want gift cards from
 
     driver = None
+    form_submitted_successfully = False
+
     try:
         driver = get_firefox_driver()
         logger.info(f"Navigating to: {url}")
@@ -141,9 +94,8 @@ def submit_form(data):
         driver.find_element(By.ID, "dnn1537Birthdate").send_keys(formatted_date)
 
         # Select preferred store
-        logger.info(f"Selecting preferred store: {preferred_store}")
         driver.find_element(By.ID, "dnn1537PreferredStore").click()
-        time.sleep(2)
+        time.sleep(5)
 
         # Wait for and click the store option
         store_element = WebDriverWait(driver, 10).until(
@@ -152,7 +104,6 @@ def submit_form(data):
         store_element.click()
 
         # Upload receipt
-        logger.info("Uploading receipt...")
         upload_receipt(driver)
 
         # Agree to terms
@@ -170,9 +121,10 @@ def submit_form(data):
 
         logger.info("Submitting form...")
         driver.execute_script("arguments[0].click();", submit_btn)
-        time.sleep(5)
+        time.sleep(2)
 
         try:
+            logger.info("Watching Video...")
             learn_more_button = WebDriverWait(driver, 25).until(
                 expected_conditions.element_to_be_clickable((By.XPATH, "//button[text()='LEARN MORE']"))
             )
@@ -194,14 +146,19 @@ def submit_form(data):
 
             # Click learn more button
             learn_more_button.click()
-            time.sleep(5)
-            # TODO check if url matches  https://gmfreegroceries.ca/Thank-you...
-            # otherwise raise error because something went wrong
-            logger.info(f"Final URL: {driver.current_url}")
-            logger.info("Form submission completed successfully")
+            time.sleep(6)
+
+            if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
+                error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
+                logger.error(error_msg)
+                raise Exception(error_msg)
+
+            logger.info("Successfully clicked on 'LEARN MORE' button")
+            form_submitted_successfully = True
 
         except TimeoutException:
             logger.error("Timeout waiting for results page")
+
             # Check for error messages
             try:
                 error_elements = driver.find_elements(By.CLASS_NAME, "jq-toast-wrap")
@@ -212,14 +169,15 @@ def submit_form(data):
                             logger.error(f"Form submission error: {error_text}")
                             raise Exception(f"Form submission failed: {error_text}")
 
-                # TODO fix this to explain error if this error element exists
-                upload_error_element = driver.find_element(By.CSS_SELECTOR, "strong.error")
-                if (upload_error_element):
-                    raise Exception(f"Form submission failed: image was deleted before form was submitted")
-
             except NoSuchElementException:
                 logger.error("No specific error message found")
                 raise Exception("Form submission failed - timeout waiting for results")
+
+            try:
+                if driver.find_element(By.CSS_SELECTOR, "strong.error").is_displayed():
+                    raise Exception("Receipt file was deleted before form was submitted")
+            except NoSuchElementException:
+                pass
 
     except TimeoutException as e:
         error_msg = f"Timeout error during form submission: {e}"
@@ -234,10 +192,15 @@ def submit_form(data):
         logger.error(error_msg)
         raise Exception(error_msg)
     except Exception as e:
-        error_msg = f"Unexpected error during form submission: {e}"
-        logger.error(error_msg)
-        raise Exception(error_msg)
+        logger.error(e)
+        raise Exception(e)
     finally:
+        # Move receipt to used directory only if form was submitted successfully
+        if form_submitted_successfully:
+            try:
+                receipt_manager.move_current_receipt_to_used()
+            except Exception as e:
+                logger.warning(f"Failed to move receipt to used directory: {e}")
         if driver:
             try:
                 driver.quit()

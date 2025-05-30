@@ -9,12 +9,7 @@ else:  # POSIX (Linux, macOS)
     import fcntl
 from datetime import datetime
 
-# Logging setup
-logging.basicConfig(
-    filename="logs/address_tracker.log",
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s: %(message)s"
-)
+logger = logging.getLogger(__name__)
 
 CSV_PATH = "data/addresses.csv"
 MAX_USES = 10
