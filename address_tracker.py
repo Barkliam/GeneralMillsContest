@@ -7,7 +7,7 @@ if os.name == 'nt':  # Windows
     import msvcrt
 else:  # POSIX (Linux, macOS)
     import fcntl
-from datetime import datetime
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -41,10 +41,11 @@ class LockedFile:
 
 def get_address():
     if not os.path.exists(CSV_PATH):
-        logging.error(f"CSV file not found at {CSV_PATH}")
+        logger.error(f"CSV file not found at {CSV_PATH}")
         raise FileNotFoundError(f"CSV file not found at {CSV_PATH}")
 
-    today = datetime.today().date()
+    now = datetime.now()
+    twenty_four_hours_ago = now - timedelta(hours=24)
     updated_rows = []
     selected_address = None
 
@@ -56,21 +57,21 @@ def get_address():
 
             for row in rows:
                 usage_count = int(row.get("TimesUsed", 0))
-                last_used = row.get("LastUsedDate", "")
-                last_used_date = datetime.strptime(last_used, "%Y-%m-%d").date() if last_used else None
+                last_used_datetime = datetime.fromisoformat(row.get("LastUsedDateTime", ""))
 
-                if selected_address is None and usage_count < MAX_USES and last_used_date != today:
+                if selected_address is None and usage_count < MAX_USES and last_used_datetime < twenty_four_hours_ago:
                     # Select this address
                     row["TimesUsed"] = str(usage_count + 1)
-                    row["LastUsedDate"] = today.isoformat()
+                    row["LastUsedDateTime"] = now.isoformat()
                     selected_address = row
-                    logging.info(f"Selected address: {row['Email']} (used {usage_count + 1} times)")
+                    logger.info(f"Selected address: {row.get('Email', 'unknown')} (used {usage_count + 1} times)")
 
                 updated_rows.append(row)
 
             if selected_address is None:
-                logging.warning("No available address to use.")
-                raise Exception("No available address to use. All have reached max usage or were used today.")
+                logger.warning("No available address to use.")
+                raise Exception(
+                    "No available address to use. All have reached max usage or were used within the last 24 hours.")
 
             # Write updates back to file
             csvfile.seek(0)
@@ -82,5 +83,5 @@ def get_address():
         return selected_address
 
     except Exception as e:
-        logging.error(f"Failed to get address: {e}", exc_info=True)
+        logger.error(f"Failed to get address: {e}", exc_info=True)
         raise

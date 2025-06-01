@@ -1,6 +1,6 @@
-FirstName,LastName,StreetNumber,Unit,City,Province,PostalCode,Email,Phone,Birthdate,TimesUsed,LastUsedDate
-Bob1,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,examjple@example.com,5554345555,2001-01-01,1,2025-05-30
-Bob2,Barker,123 Druy Lane,B,Toronto,Ontario,K1R6E9,examjh9popl0e@example.com,5554345555,2001-01-01,1,2025-05-30
-Bob3,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,examjdtple@example.com,5554345555,2001-01-01,1,2025-05-30
-Bob4,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,edxejdample@example.com,5554345555,2001-01-01,2,2025-05-30
-Bob5,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,exiamdjplae1f@example.com,5554345555,2001-01-01,1,2025-05-30
+FirstName,LastName,StreetNumber,Unit,City,Province,PostalCode,Email,Phone,Birthdate,TimesUsed,LastUsedDateTime
+Bob1,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,examjple@example.com,5554345555,2001-01-01,2,2025-06-01T23:05:14.258833
+Bob2,Barker,123 Druy Lane,B,Toronto,Ontario,K1R6E9,examjh9popl0e@example.com,5554345555,2001-01-01,1,2025-05-30T09:15:00
+Bob3,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,examjdtple@example.com,5554345555,2001-01-01,1,2025-05-30T16:45:00
+Bob4,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,edxejdample@example.com,5554345555,2001-01-01,2,2025-05-30T11:20:00
+Bob5,Barker,123 Drury Lane,B,Toronto,Ontario,K1R6E9,exiamdjplae1f@example.com,5554345555,2001-01-01,1,2025-05-30T08:00:00

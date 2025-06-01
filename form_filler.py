@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 def upload_receipt(driver):
+    """Upload receipt file to the form."""
     receipt_path = receipt_manager.get_next_receipt()
     upload_input = WebDriverWait(driver, 10).until(
         expected_conditions.presence_of_element_located(
@@ -81,6 +82,7 @@ def submit_form(data):
         province_select = Select(driver.find_element(By.ID, "dnn1537Province"))
         province_select.select_by_visible_text(data['Province'])
 
+        # Format postal code properly (add space if missing)
         raw_postal_code = data['PostalCode'].replace(" ", "").upper()
         formatted_postal_code = f"{raw_postal_code[:3]} {raw_postal_code[3:]}"
         driver.find_element(By.ID, "dnn1537PostalCode").send_keys(formatted_postal_code)
@@ -88,6 +90,7 @@ def submit_form(data):
         driver.find_element(By.ID, "dnn1537Email").send_keys(data['Email'])
         driver.find_element(By.ID, "dnn1537Phone").send_keys(data['Phone'])
 
+        # Format birthdate
         raw_birthdate = data['Birthdate']  # e.g., "2001-03-01"
         parsed_date = datetime.strptime(raw_birthdate, "%Y-%m-%d")
         formatted_date = parsed_date.strftime("%d/%m/%Y")  # "01/03/2001"
@@ -123,6 +126,7 @@ def submit_form(data):
         driver.execute_script("arguments[0].click();", submit_btn)
         time.sleep(2)
 
+        # Handle post-submission flow
         try:
             logger.info("Watching Video...")
             learn_more_button = WebDriverWait(driver, 25).until(
@@ -148,6 +152,7 @@ def submit_form(data):
             learn_more_button.click()
             time.sleep(6)
 
+            # Verify final URL
             if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
                 error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
                 logger.error(error_msg)
@@ -173,6 +178,7 @@ def submit_form(data):
                 logger.error("No specific error message found")
                 raise Exception("Form submission failed - timeout waiting for results")
 
+            # Check for receipt deletion error
             try:
                 if driver.find_element(By.CSS_SELECTOR, "strong.error").is_displayed():
                     raise Exception("Receipt file was deleted before form was submitted")
@@ -192,15 +198,17 @@ def submit_form(data):
         logger.error(error_msg)
         raise Exception(error_msg)
     except Exception as e:
-        logger.error(e)
+        logger.error(f"Unexpected error during form submission: {e}")
         raise Exception(e)
     finally:
         # Move receipt to used directory only if form was submitted successfully
         if form_submitted_successfully:
             try:
                 receipt_manager.move_current_receipt_to_used()
+                logger.info("Receipt moved to used directory")
             except Exception as e:
                 logger.warning(f"Failed to move receipt to used directory: {e}")
+
         if driver:
             try:
                 driver.quit()

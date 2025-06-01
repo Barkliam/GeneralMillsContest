@@ -53,7 +53,7 @@ def form_submission_job():
 def main():
     logging.info("Starting contest submission scheduler...")
 
-    # form_submission_job() uncomment to enter immediately
+    #form_submission_job() #uncomment to enter immediately
 
     schedule.every().day.at("06:01").do(form_submission_job)
     schedule.every().day.at("07:01").do(form_submission_job)
