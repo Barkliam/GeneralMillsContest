@@ -9,9 +9,12 @@ from address_tracker import get_real_address, get_dummy_address
 from form_filler import submit_form
 
 # Configuration for scheduling
-START_TIME = "23:00"  # Start time in HH:MM format
-END_TIME = "08:00"  # End time in HH:MM format
-INTERVAL = 1  # Interval between attempts in minutes
+START_TIME = "05:00"  # Start time in HH:MM format
+END_TIME = "09:00"  # End time in HH:MM format
+INTERVAL = 5  # Interval between attempts in minutes
+
+# Global flag to stop all tasks when winner is found
+winner_found = False
 
 
 def setup_logging() -> logging.Logger:
@@ -64,6 +67,13 @@ def is_within_schedule() -> bool:
 
 def form_submission_job(logger: logging.Logger) -> None:
     """Job function that runs form submission with time checking."""
+    global winner_found
+
+    # Check if we've already found a winner
+    if winner_found:
+        logger.info("Winner already found. Skipping submission.")
+        return
+
     if not is_within_schedule():
         logger.info(f"Current time is outside scheduled hours ({START_TIME} - {END_TIME}). Skipping submission.")
         return
@@ -82,6 +92,10 @@ def form_submission_job(logger: logging.Logger) -> None:
                 actual_winner = submit_form(real_address, real_submission=True, save_screenshot=True)
                 if actual_winner:
                     logger.info("🎉 CONFIRMED WINNER WITH REAL SUBMISSION! 🎉")
+                    logger.info("Setting winner flag to stop all future submissions...")
+                    winner_found = True
+                    schedule.clear()  # Clear all scheduled jobs
+                    logger.info("All scheduled jobs cleared due to winner confirmation.")
                 else:
                     logger.info("Real submission completed but not a winner.")
             except FileNotFoundError as e:
@@ -122,6 +136,8 @@ def validate_time_format(time_str: str) -> bool:
 
 def main() -> None:
     """Main function to run the contest submission scheduler."""
+    global winner_found
+
     # Setup logging first
     logger = setup_logging()
 
@@ -153,6 +169,11 @@ def main() -> None:
 
         # Main scheduler loop
         while True:
+            # Check if winner has been found
+            if winner_found:
+                logger.info("Winner found! Stopping scheduler...")
+                break
+
             schedule.run_pending()
             time.sleep(30)  # Check every 30 seconds for pending jobs
 
@@ -162,7 +183,10 @@ def main() -> None:
         logger.error(f"Unexpected error in main scheduler loop: {e}", exc_info=True)
     finally:
         schedule.clear()
-        logger.info("All scheduled jobs cleared. Scheduler shutdown complete.")
+        if winner_found:
+            logger.info("Scheduler shutdown complete - Winner was found!")
+        else:
+            logger.info("All scheduled jobs cleared. Scheduler shutdown complete.")
 
 
 if __name__ == "__main__":
