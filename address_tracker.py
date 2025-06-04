@@ -96,42 +96,59 @@ def get_dummy_address():
         logger.error(f"Dummy CSV file not found at {DUMMY_ADDRESS_CSV_PATH}")
         raise FileNotFoundError(f"Dummy CSV file not found at {DUMMY_ADDRESS_CSV_PATH}")
 
+    now = datetime.now()
+
     try:
-        with open(DUMMY_ADDRESS_CSV_PATH, 'r', newline='', encoding='utf-8') as csvfile:
+        with LockedFile(DUMMY_ADDRESS_CSV_PATH, "r+") as csvfile:
             reader = csv.DictReader(csvfile)
+            fieldnames = reader.fieldnames
             rows = list(reader)
 
             if not rows:
-                logger.warning("Dummy CSV file is empty")
                 raise Exception("Dummy CSV file is empty")
 
             # Find the address with the oldest LastUsedDateTime
             oldest_address = None
             oldest_datetime = None
+            oldest_index = -1
 
-            for row in rows:
+            for i, row in enumerate(rows):
                 try:
                     last_used_str = row.get("LastUsedDateTime", "")
                     if not last_used_str:
                         oldest_address = row
+                        oldest_index = i
                         break
 
                     last_used_datetime = datetime.fromisoformat(last_used_str)
                     if oldest_datetime is None or last_used_datetime < oldest_datetime:
                         oldest_datetime = last_used_datetime
                         oldest_address = row
+                        oldest_index = i
 
                 except ValueError as ve:
                     logger.info(
                         f"Invalid datetime format for row with email {row.get('Email', 'unknown')}: {ve} - treating as infinitely old")
                     oldest_address = row
+                    oldest_index = i
                     break
 
             if oldest_address is None:
                 raise Exception("No valid dummy address found")
 
+            # Update the LastUsedDateTime for the selected address
+            rows[oldest_index]["LastUsedDateTime"] = now.isoformat()
+
+            # Write updates back to file
+            csvfile.seek(0)
+            csvfile.truncate()
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
             logger.info(
-                f"Selected dummy address: {oldest_address.get('Email', 'unknown')} with LastUsedDateTime: {oldest_datetime}")
+                f"Selected dummy address: {oldest_address.get('Email', 'unknown')} with previous LastUsedDateTime: {oldest_datetime}, updated to: {now.isoformat()}")
+
             return oldest_address
 
     except Exception as e:

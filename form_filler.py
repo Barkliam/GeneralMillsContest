@@ -5,23 +5,55 @@ import string
 import tempfile
 import time
 from datetime import datetime
+from typing import Dict, Any
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
+from selenium.common.exceptions import (
+    NoSuchElementException,
+    TimeoutException,
+    WebDriverException
+)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 from receipt_manager import ReceiptManager
 
-receipt_manager = ReceiptManager()
+# Global variables for resource cleanup
+_temp_profile_dirs = []
+_receipt_manager = None
+
 logger = logging.getLogger(__name__)
 
 
-def upload_receipt(driver, real_submission):
+def get_receipt_manager() -> ReceiptManager:
+    """Get or create receipt manager instance."""
+    global _receipt_manager
+    if _receipt_manager is None:
+        _receipt_manager = ReceiptManager()
+    return _receipt_manager
+
+
+def generate_random_email() -> str:
+    """Generate a random email address for testing purposes."""
+    username_length = random.randint(8, 12)
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=username_length))
+
+    domains = ['example.com', 'test.com', 'dummy.org', 'fake.net']
+    domain = random.choice(domains)
+
+    email = f"{username}@{domain}"
+    logger.debug(f"Generated random email: {email}")
+    return email
+
+
+def upload_receipt(driver: webdriver.Firefox, real_submission: bool) -> None:
     """Upload receipt file to the form."""
+
+    receipt_manager = get_receipt_manager()
+
     if real_submission:
         receipt_path = receipt_manager.get_next_receipt()
     else:
@@ -35,7 +67,7 @@ def upload_receipt(driver, real_submission):
     time.sleep(3)
 
 
-def get_firefox_driver():
+def get_firefox_driver() -> webdriver.Firefox:
     """Create and configure Firefox WebDriver instance."""
     try:
         options = FirefoxOptions()
@@ -58,7 +90,7 @@ def get_firefox_driver():
         raise
 
 
-def save_screenshot_with_timestamp(driver, prefix="screenshot"):
+def save_screenshot_with_timestamp(driver: webdriver.Firefox, prefix: str = "screenshot"):
     """Save a screenshot with timestamp."""
     try:
         # Create screenshots directory if it doesn't exist
@@ -71,27 +103,17 @@ def save_screenshot_with_timestamp(driver, prefix="screenshot"):
         filepath = os.path.join(screenshot_dir, filename)
 
         # Save screenshot
-        driver.save_screenshot(filepath)
-        logger.info(f"Screenshot saved: {filepath}")
-        return filepath
+        success = driver.save_screenshot(filepath)
+        if success:
+            logger.info(f"Screenshot saved: {filepath}")
+        else:
+            raise ValueError()
+
     except Exception as e:
         logger.warning(f"Failed to save screenshot: {e}")
-        return None
 
 
-def generate_random_email() -> str:
-    """Generate a random email address for testing purposes."""
-    username_length = random.randint(8, 12)
-    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=username_length))
-
-    domains = ['example.com', 'test.com', 'dummy.org', 'fake.net']
-    domain = random.choice(domains)
-
-    email = f"{username}@{domain}"
-    logger.debug(f"Generated random email: {email}")
-    return email
-
-def submit_form(data, real_submission=False, save_screenshot=False):
+def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screenshot: bool = False) -> bool | None:
     """
     Submit form and return winner status.
 
@@ -114,6 +136,11 @@ def submit_form(data, real_submission=False, save_screenshot=False):
         driver = get_firefox_driver()
         logger.info(f"Navigating to: {url}")
         driver.get(url)
+
+        # Wait for page to load completely
+        WebDriverWait(driver, 25).until(
+            expected_conditions.presence_of_element_located((By.ID, "dnn1537FirstName"))
+        )
 
         # Fill form fields
         logger.info("Filling form fields...")
@@ -170,18 +197,19 @@ def submit_form(data, real_submission=False, save_screenshot=False):
         if not submit_btn.is_enabled():
             error_msg = "Submit button is disabled. Form cannot be submitted."
             logger.error(error_msg)
+            save_screenshot_with_timestamp(driver, "submit button disabled")
             raise Exception(error_msg)
 
         logger.info("Submitting form...")
         driver.execute_script("arguments[0].click();", submit_btn)
-        time.sleep(2)
+        time.sleep(3)
 
         # Handle post-submission flow
         try:
             logger.info("Watching Video...")
 
             # Wait for button to appear after video
-            button_element = WebDriverWait(driver, 25).until(
+            button_element = WebDriverWait(driver, 30).until(
                 expected_conditions.element_to_be_clickable(
                     (By.XPATH, "//button[contains(text(), 'NEXT STEPS') or contains(text(), 'LEARN MORE')]"))
             )
@@ -204,7 +232,7 @@ def submit_form(data, real_submission=False, save_screenshot=False):
                 screenshot_prefix = "winner" if is_winner else "non_winner"
                 save_screenshot_with_timestamp(driver, screenshot_prefix)
 
-            # Click button only if complete_submission is True
+            # Click button only if real_submission is True
             if real_submission:
                 logger.info(f"Clicking '{button_text}' button...")
                 button_element.click()
@@ -268,11 +296,13 @@ def submit_form(data, real_submission=False, save_screenshot=False):
         # Move receipt to used directory only if form was submitted successfully and using real data
         if form_submitted_successfully and real_submission:
             try:
+                receipt_manager = get_receipt_manager()
                 receipt_manager.move_current_receipt_to_used()
                 logger.info("Receipt moved to used directory")
             except Exception as e:
                 logger.warning(f"Failed to move receipt to used directory: {e}")
 
+        # Clean up WebDriver
         if driver:
             try:
                 driver.quit()
