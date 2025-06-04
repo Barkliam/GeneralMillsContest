@@ -11,7 +11,8 @@ from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
-CSV_PATH = "data/real_addresses.csv"
+REAL_ADDRESS_CSV_PATH = "data/real_addresses.csv"
+DUMMY_ADDRESS_CSV_PATH = "data/dummy_addresses.csv"
 MAX_USES = 10
 
 
@@ -41,9 +42,9 @@ class LockedFile:
 
 def get_real_address():
     logger.info("attempting to get real address...")
-    if not os.path.exists(CSV_PATH):
-        logger.error(f"CSV file not found at {CSV_PATH}")
-        raise FileNotFoundError(f"CSV file not found at {CSV_PATH}")
+    if not os.path.exists(REAL_ADDRESS_CSV_PATH):
+        logger.error(f"CSV file not found at {REAL_ADDRESS_CSV_PATH}")
+        raise FileNotFoundError(f"CSV file not found at {REAL_ADDRESS_CSV_PATH}")
 
     now = datetime.now()
     twenty_four_hours_ago = now - timedelta(hours=24)
@@ -51,7 +52,7 @@ def get_real_address():
     selected_address = None
 
     try:
-        with LockedFile(CSV_PATH, "r+") as csvfile:
+        with LockedFile(REAL_ADDRESS_CSV_PATH, "r+") as csvfile:
             reader = csv.DictReader(csvfile)
             fieldnames = reader.fieldnames
             rows = list(reader)
@@ -85,4 +86,54 @@ def get_real_address():
 
     except Exception as e:
         logger.error(f"Failed to get address: {e}", exc_info=True)
+        raise
+
+
+def get_dummy_address():
+    logger.info("attempting to get dummy address...")
+
+    if not os.path.exists(DUMMY_ADDRESS_CSV_PATH):
+        logger.error(f"Dummy CSV file not found at {DUMMY_ADDRESS_CSV_PATH}")
+        raise FileNotFoundError(f"Dummy CSV file not found at {DUMMY_ADDRESS_CSV_PATH}")
+
+    try:
+        with open(DUMMY_ADDRESS_CSV_PATH, 'r', newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            rows = list(reader)
+
+            if not rows:
+                logger.warning("Dummy CSV file is empty")
+                raise Exception("Dummy CSV file is empty")
+
+            # Find the address with the oldest LastUsedDateTime
+            oldest_address = None
+            oldest_datetime = None
+
+            for row in rows:
+                try:
+                    last_used_str = row.get("LastUsedDateTime", "")
+                    if not last_used_str:
+                        oldest_address = row
+                        break
+
+                    last_used_datetime = datetime.fromisoformat(last_used_str)
+                    if oldest_datetime is None or last_used_datetime < oldest_datetime:
+                        oldest_datetime = last_used_datetime
+                        oldest_address = row
+
+                except ValueError as ve:
+                    logger.info(
+                        f"Invalid datetime format for row with email {row.get('Email', 'unknown')}: {ve} - treating as infinitely old")
+                    oldest_address = row
+                    break
+
+            if oldest_address is None:
+                raise Exception("No valid dummy address found")
+
+            logger.info(
+                f"Selected dummy address: {oldest_address.get('Email', 'unknown')} with LastUsedDateTime: {oldest_datetime}")
+            return oldest_address
+
+    except Exception as e:
+        logger.error(f"Failed to get dummy address: {e}", exc_info=True)
         raise

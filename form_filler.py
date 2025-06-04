@@ -1,4 +1,7 @@
 import logging
+import os
+import random
+import string
 import tempfile
 import time
 from datetime import datetime
@@ -17,9 +20,12 @@ receipt_manager = ReceiptManager()
 logger = logging.getLogger(__name__)
 
 
-def upload_receipt(driver):
+def upload_receipt(driver, real_submission):
     """Upload receipt file to the form."""
-    receipt_path = receipt_manager.get_next_receipt()
+    if real_submission:
+        receipt_path = receipt_manager.get_next_receipt()
+    else:
+        receipt_path = ReceiptManager.get_dummy_receipt()
     upload_input = WebDriverWait(driver, 10).until(
         expected_conditions.presence_of_element_located(
             (By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']"))
@@ -52,22 +58,62 @@ def get_firefox_driver():
         raise
 
 
-def submit_form(data):
-    """Submit the contest entry form with provided data."""
+def save_screenshot_with_timestamp(driver, prefix="screenshot"):
+    """Save a screenshot with timestamp."""
+    try:
+        # Create screenshots directory if it doesn't exist
+        screenshot_dir = "screenshots"
+        os.makedirs(screenshot_dir, exist_ok=True)
+
+        # Generate filename with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{prefix}_{timestamp}.png"
+        filepath = os.path.join(screenshot_dir, filename)
+
+        # Save screenshot
+        driver.save_screenshot(filepath)
+        logger.info(f"Screenshot saved: {filepath}")
+        return filepath
+    except Exception as e:
+        logger.warning(f"Failed to save screenshot: {e}")
+        return None
+
+
+def generate_random_email() -> str:
+    """Generate a random email address for testing purposes."""
+    username_length = random.randint(8, 12)
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=username_length))
+
+    domains = ['example.com', 'test.com', 'dummy.org', 'fake.net']
+    domain = random.choice(domains)
+
+    email = f"{username}@{domain}"
+    logger.debug(f"Generated random email: {email}")
+    return email
+
+def submit_form(data, real_submission=False, save_screenshot=False):
+    """
+    Submit form and return winner status.
+
+    Args:
+        data: Address data dictionary
+        real_submission: If True, click the button after determining winner status
+        save_screenshot: If True, save screenshots during the process
+
+    Returns:
+        bool: True if winner, False if not winner
+    """
     url = "https://gmfreegroceries.ca/Enter"
     preferred_store = "Walmart"  # Change this to whichever store you want gift cards from
 
     driver = None
     form_submitted_successfully = False
+    is_winner = False
 
     try:
         driver = get_firefox_driver()
         logger.info(f"Navigating to: {url}")
         driver.get(url)
-
-        # Log cookies for debugging
-        logger.debug(f"Cookies: {driver.execute_script('return document.cookie')}")
-        time.sleep(5)
 
         # Fill form fields
         logger.info("Filling form fields...")
@@ -87,7 +133,11 @@ def submit_form(data):
         formatted_postal_code = f"{raw_postal_code[:3]} {raw_postal_code[3:]}"
         driver.find_element(By.ID, "dnn1537PostalCode").send_keys(formatted_postal_code)
 
-        driver.find_element(By.ID, "dnn1537Email").send_keys(data['Email'])
+        if real_submission:
+            email = data['Email']
+        else:
+            email = generate_random_email()
+        driver.find_element(By.ID, "dnn1537Email").send_keys(email)
         driver.find_element(By.ID, "dnn1537Phone").send_keys(data['Phone'])
 
         # Format birthdate
@@ -107,7 +157,7 @@ def submit_form(data):
         store_element.click()
 
         # Upload receipt
-        upload_receipt(driver)
+        upload_receipt(driver, real_submission)
 
         # Agree to terms
         agree_checkbox = driver.find_element(By.ID, "dnn1537Agree")
@@ -129,40 +179,54 @@ def submit_form(data):
         # Handle post-submission flow
         try:
             logger.info("Watching Video...")
-            learn_more_button = WebDriverWait(driver, 25).until(
-                expected_conditions.element_to_be_clickable((By.XPATH, "//button[text()='LEARN MORE']"))
+
+            # Wait for button to appear after video
+            button_element = WebDriverWait(driver, 25).until(
+                expected_conditions.element_to_be_clickable(
+                    (By.XPATH, "//button[contains(text(), 'NEXT STEPS') or contains(text(), 'LEARN MORE')]"))
             )
 
-            # Check if winner or not by video matching
-            try:
-                video_element = driver.find_element(By.CSS_SELECTOR, "video.winningvideo")
-                poster_url = video_element.get_attribute('poster')
+            # Check button text to determine winner status
+            button_text = button_element.text.strip().upper()
 
-                if "2025winner" in poster_url:
-                    logger.info("🎉 WINNER! 🎉")
-                elif "2025nonwinner" in poster_url:
-                    logger.info("Not a winner this time")
-                else:
-                    logger.warning(f"Unknown video found: {poster_url}")
+            if "NEXT STEPS" in button_text:
+                logger.info("🎉 WINNER! 🎉")
+                is_winner = True
+            elif "LEARN MORE" in button_text:
+                logger.info("Not a winner this time")
+                is_winner = False
+            else:
+                logger.warning(f"Unknown button text found after watching video: {button_text}")
+                save_screenshot_with_timestamp(driver, "error")
+                is_winner = False
 
-            except NoSuchElementException:
-                logger.warning("Could not find video element to determine win status")
+            if save_screenshot:
+                screenshot_prefix = "winner" if is_winner else "non_winner"
+                save_screenshot_with_timestamp(driver, screenshot_prefix)
 
-            # Click learn more button
-            learn_more_button.click()
-            time.sleep(6)
+            # Click button only if complete_submission is True
+            if real_submission:
+                logger.info(f"Clicking '{button_text}' button...")
+                button_element.click()
+                time.sleep(6)
 
-            # Verify final URL
-            if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
-                error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
-                logger.error(error_msg)
-                raise Exception(error_msg)
+                # Verify final URL
+                if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
+                    error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
+                    save_screenshot_with_timestamp(driver, "error")
+                    logger.error(error_msg)
+                    raise Exception(error_msg)
 
-            logger.info("Successfully clicked on 'LEARN MORE' button")
+                logger.info(f"Successfully clicked on '{button_text}' button")
+
+                if save_screenshot:
+                    save_screenshot_with_timestamp(driver, "Winner_Code")
+
             form_submitted_successfully = True
 
         except TimeoutException:
             logger.error("Timeout waiting for results page")
+            save_screenshot_with_timestamp(driver, "error")
 
             # Check for error messages
             try:
@@ -201,8 +265,8 @@ def submit_form(data):
         logger.error(f"Unexpected error during form submission: {e}")
         raise Exception(e)
     finally:
-        # Move receipt to used directory only if form was submitted successfully
-        if form_submitted_successfully:
+        # Move receipt to used directory only if form was submitted successfully and using real data
+        if form_submitted_successfully and real_submission:
             try:
                 receipt_manager.move_current_receipt_to_used()
                 logger.info("Receipt moved to used directory")
@@ -215,3 +279,5 @@ def submit_form(data):
                 logger.info("WebDriver session closed")
             except Exception as e:
                 logger.warning(f"Error closing WebDriver: {e}")
+
+    return is_winner
