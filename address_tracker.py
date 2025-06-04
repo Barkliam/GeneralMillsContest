@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
-CSV_PATH = "data/addresses.csv"
+CSV_PATH = "data/real_addresses.csv"
 MAX_USES = 10
 
 
@@ -39,7 +39,8 @@ class LockedFile:
             self.file.close()
 
 
-def get_address():
+def get_real_address():
+    logger.info("attempting to get real address...")
     if not os.path.exists(CSV_PATH):
         logger.error(f"CSV file not found at {CSV_PATH}")
         raise FileNotFoundError(f"CSV file not found at {CSV_PATH}")
@@ -69,9 +70,9 @@ def get_address():
                 updated_rows.append(row)
 
             if selected_address is None:
-                logger.warning("No available address to use.")
+                logger.warning("No available real address to use.")
                 raise Exception(
-                    "No available address to use. All have reached max usage or were used within the last 24 hours.")
+                    "No available real address to use. All have reached max usage or were used within the last 24 hours.")
 
             # Write updates back to file
             csvfile.seek(0)
