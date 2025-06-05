@@ -238,12 +238,12 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
                 button_element.click()
                 time.sleep(6)
 
-                # Verify final URL
-                if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
-                    error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
-                    save_screenshot_with_timestamp(driver, "error")
-                    logger.error(error_msg)
-                    raise Exception(error_msg)
+                # Commented out URL verification because we don't know what the winning URL is
+                #if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
+                    #error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
+                    #save_screenshot_with_timestamp(driver, "error")
+                    #logger.error(error_msg)
+                    #raise Exception(error_msg)
 
                 logger.info(f"Successfully clicked on '{button_text}' button")
 
