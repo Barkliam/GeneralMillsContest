@@ -89,15 +89,29 @@ def form_submission_job(logger: logging.Logger) -> None:
             logger.info("Winner detected. Attempting submission with real address...")
             try:
                 real_address = get_real_address()
-                actual_winner = submit_form(real_address, real_submission=True, save_screenshot=True)
+                actual_winner = submit_form(real_address, real_submission=True, save_screenshot=True, reuse_driver=True)
                 if actual_winner:
                     logger.info("🎉 CONFIRMED WINNER WITH REAL SUBMISSION! 🎉")
                     logger.info("Setting winner flag to stop all future submissions...")
                     winner_found = True
-                    schedule.clear()  # Clear all scheduled jobs
+                    schedule.clear()
                     logger.info("All scheduled jobs cleared due to winner confirmation.")
                 else:
-                    logger.info("Real submission completed but not a winner.")
+                    logger.info("Real submission not a winner. Waiting 20 minutes before trying again...")
+                    schedule.clear()
+                    time.sleep(20 * 60)  # Pause 20 minutes
+                    # Retry one more real submission
+                    logger.info("Retrying real submission after 20-minute wait...")
+                    actual_winner = submit_form(real_address, real_submission=True, save_screenshot=True)
+                    if actual_winner:
+                        logger.info("🎉 WINNER ON SECOND REAL SUBMISSION! 🎉")
+                        winner_found = True
+                        logger.info("All scheduled jobs cleared due to winner confirmation.")
+                    else:
+                        logger.info("Second real submission also not a winner. All scheduled jobs cleared.")
+                        os._exit(0)  # Forceful exit of the script
+                    schedule.clear()
+
             except FileNotFoundError as e:
                 logger.error(f"No real addresses available: {e}")
             except Exception as e:

@@ -8,11 +8,7 @@ from datetime import datetime
 from typing import Dict, Any
 
 from selenium import webdriver
-from selenium.common.exceptions import (
-    NoSuchElementException,
-    TimeoutException,
-    WebDriverException
-)
+from selenium.common.exceptions import (NoSuchElementException, TimeoutException, WebDriverException)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.support import expected_conditions as expected_conditions
@@ -24,6 +20,9 @@ from receipt_manager import ReceiptManager
 # Global variables for resource cleanup
 _temp_profile_dirs = []
 _receipt_manager = None
+
+# Global browser instance
+shared_driver = None
 
 logger = logging.getLogger(__name__)
 
@@ -59,9 +58,7 @@ def upload_receipt(driver: webdriver.Firefox, real_submission: bool) -> None:
     else:
         receipt_path = ReceiptManager.get_dummy_receipt()
     upload_input = WebDriverWait(driver, 10).until(
-        expected_conditions.presence_of_element_located(
-            (By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']"))
-    )
+        expected_conditions.presence_of_element_located((By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']")))
     upload_input.send_keys(receipt_path)
     logger.info(f"Uploading receipt: {receipt_path}")
     time.sleep(3)
@@ -89,6 +86,15 @@ def get_firefox_driver() -> webdriver.Firefox:
         logger.error(f"Failed to initialize Firefox driver: {e}")
         raise
 
+def cleanup_shared_driver():
+    global shared_driver
+    if shared_driver is not None:
+        try:
+            shared_driver.quit()
+            logger.info("WebDriver session closed")
+            shared_driver = None
+        except Exception as e:
+            logger.warning(f"Error closing WebDriver: {e}")
 
 def save_screenshot_with_timestamp(driver: webdriver.Firefox, prefix: str = "screenshot"):
     """Save a screenshot with timestamp."""
@@ -113,7 +119,8 @@ def save_screenshot_with_timestamp(driver: webdriver.Firefox, prefix: str = "scr
         logger.warning(f"Failed to save screenshot: {e}")
 
 
-def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screenshot: bool = False) -> bool | None:
+def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screenshot: bool = False,
+                reuse_driver: bool = False) -> bool | None:
     """
     Submit form and return winner status.
 
@@ -121,10 +128,12 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
         data: Address data dictionary
         real_submission: If True, click the button after determining winner status
         save_screenshot: If True, save screenshots during the process
+        reuse_driver: If True, use global browser driver
 
     Returns:
         bool: True if winner, False if not winner
     """
+    global shared_driver
     url = "https://gmfreegroceries.ca/Enter"
     preferred_store = "Walmart"  # Change this to whichever store you want gift cards from
 
@@ -133,20 +142,27 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
     is_winner = False
 
     try:
-        driver = get_firefox_driver()
+        if reuse_driver and shared_driver is not None:
+            driver = shared_driver
+            driver.execute_script("window.open('');")
+            driver.switch_to.window(driver.window_handles[-1])
+            logger.info("reusing driver, opened a new window")
+        else:
+            cleanup_shared_driver()
+            driver = get_firefox_driver()
+            shared_driver = driver
+
         logger.info(f"Navigating to: {url}")
         driver.get(url)
 
         # Wait for page to load completely
-        WebDriverWait(driver, 25).until(
-            expected_conditions.presence_of_element_located((By.ID, "dnn1537FirstName"))
-        )
+        WebDriverWait(driver, 25).until(expected_conditions.presence_of_element_located((By.ID, "dnn1537FirstName")))
 
         # Fill form fields
         logger.info("Filling form fields...")
         time.sleep(3)
 
-        #delete cookie banner
+        # delete cookie banner
         driver.execute_script("""
             let banner = document.querySelector('.cc-window');
             if (banner) banner.remove();
@@ -186,8 +202,7 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
 
         # Wait for and click the store option
         store_element = WebDriverWait(driver, 10).until(
-            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{preferred_store}')]"))
-        )
+            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{preferred_store}')]")))
         store_element.click()
 
         # Upload receipt
@@ -216,10 +231,8 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
             logger.info("Watching Video...")
 
             # Wait for button to appear after video
-            button_element = WebDriverWait(driver, 30).until(
-                expected_conditions.element_to_be_clickable(
-                    (By.XPATH, "//button[contains(text(), 'NEXT STEPS') or contains(text(), 'LEARN MORE')]"))
-            )
+            button_element = WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, "//button[contains(text(), 'NEXT STEPS') or contains(text(), 'LEARN MORE')]")))
 
             # Check button text to determine winner status
             button_text = button_element.text.strip().upper()
@@ -246,11 +259,11 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
                 time.sleep(6)
 
                 # Commented out URL verification because we don't know what the winning URL is
-                #if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
-                    #error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
-                    #save_screenshot_with_timestamp(driver, "error")
-                    #logger.error(error_msg)
-                    #raise Exception(error_msg)
+                # if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
+                # error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
+                # save_screenshot_with_timestamp(driver, "error")
+                # logger.error(error_msg)
+                # raise Exception(error_msg)
 
                 logger.info(f"Successfully clicked on '{button_text}' button")
 
@@ -308,13 +321,4 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
                 logger.info("Receipt moved to used directory")
             except Exception as e:
                 logger.warning(f"Failed to move receipt to used directory: {e}")
-
-        # Clean up WebDriver
-        if driver:
-            try:
-                driver.quit()
-                logger.info("WebDriver session closed")
-            except Exception as e:
-                logger.warning(f"Error closing WebDriver: {e}")
-
     return is_winner
