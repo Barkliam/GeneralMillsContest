@@ -144,6 +144,13 @@ def submit_form(data: Dict[str, Any], real_submission: bool = False, save_screen
 
         # Fill form fields
         logger.info("Filling form fields...")
+        time.sleep(3)
+
+        #delete cookie banner
+        driver.execute_script("""
+            let banner = document.querySelector('.cc-window');
+            if (banner) banner.remove();
+        """)
 
         # Personal information
         driver.find_element(By.ID, "dnn1537FirstName").send_keys(data['FirstName'])
