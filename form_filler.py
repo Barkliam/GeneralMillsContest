@@ -21,9 +21,7 @@ def upload_receipt(driver):
     """Upload receipt file to the form."""
     receipt_path = receipt_manager.get_next_receipt()
     upload_input = WebDriverWait(driver, 10).until(
-        expected_conditions.presence_of_element_located(
-            (By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']"))
-    )
+        expected_conditions.presence_of_element_located((By.CSS_SELECTOR, "input[type='file'][name='UploadReceipt']")))
     upload_input.send_keys(receipt_path)
     logger.info(f"Uploading receipt: {receipt_path}")
     time.sleep(3)
@@ -52,6 +50,29 @@ def get_firefox_driver():
         raise
 
 
+def save_screenshot_with_timestamp(driver: webdriver.Firefox, prefix: str = "screenshot"):
+    """Save a screenshot with timestamp."""
+    try:
+        # Create screenshots directory if it doesn't exist
+        screenshot_dir = "screenshots"
+        os.makedirs(screenshot_dir, exist_ok=True)
+
+        # Generate filename with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{prefix}_{timestamp}.png"
+        filepath = os.path.join(screenshot_dir, filename)
+
+        # Save screenshot
+        success = driver.save_screenshot(filepath)
+        if success:
+            logger.info(f"Screenshot saved: {filepath}")
+        else:
+            raise ValueError()
+
+    except Exception as e:
+        logger.warning(f"Failed to save screenshot: {e}")
+
+
 def submit_form(data):
     """Submit the contest entry form with provided data."""
     url = "https://gmfreegroceries.ca/Enter"
@@ -59,18 +80,25 @@ def submit_form(data):
 
     driver = None
     form_submitted_successfully = False
+    is_winner = False
 
     try:
         driver = get_firefox_driver()
         logger.info(f"Navigating to: {url}")
         driver.get(url)
 
-        # Log cookies for debugging
-        logger.debug(f"Cookies: {driver.execute_script('return document.cookie')}")
-        time.sleep(5)
+        # Wait for page to load completely
+        WebDriverWait(driver, 25).until(expected_conditions.presence_of_element_located((By.ID, "dnn1537FirstName")))
 
         # Fill form fields
         logger.info("Filling form fields...")
+        time.sleep(3)
+
+        # delete cookie banner
+        driver.execute_script("""
+            let banner = document.querySelector('.cc-window');
+            if (banner) banner.remove();
+        """)
 
         # Personal information
         driver.find_element(By.ID, "dnn1537FirstName").send_keys(data['FirstName'])
@@ -102,8 +130,7 @@ def submit_form(data):
 
         # Wait for and click the store option
         store_element = WebDriverWait(driver, 10).until(
-            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{preferred_store}')]"))
-        )
+            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{preferred_store}')]")))
         store_element.click()
 
         # Upload receipt
@@ -120,49 +147,56 @@ def submit_form(data):
         if not submit_btn.is_enabled():
             error_msg = "Submit button is disabled. Form cannot be submitted."
             logger.error(error_msg)
+            save_screenshot_with_timestamp(driver, "submit button disabled")
             raise Exception(error_msg)
 
         logger.info("Submitting form...")
         driver.execute_script("arguments[0].click();", submit_btn)
-        time.sleep(2)
+        time.sleep(3)
 
         # Handle post-submission flow
         try:
             logger.info("Watching Video...")
-            learn_more_button = WebDriverWait(driver, 25).until(
-                expected_conditions.element_to_be_clickable((By.XPATH, "//button[text()='LEARN MORE']"))
-            )
 
-            # Check if winner or not by video matching
-            try:
-                video_element = driver.find_element(By.CSS_SELECTOR, "video.winningvideo")
-                poster_url = video_element.get_attribute('poster')
+            # Wait for button to appear after video
+            button_element = WebDriverWait(driver, 30).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, "//button[contains(text(), 'NEXT STEPS') or contains(text(), 'LEARN MORE')]")))
 
-                if "2025winner" in poster_url:
-                    logger.info("🎉 WINNER! 🎉")
-                elif "2025nonwinner" in poster_url:
-                    logger.info("Not a winner this time")
-                else:
-                    logger.warning(f"Unknown video found: {poster_url}")
+            # Check button text to determine winner status
+            button_text = button_element.text.strip().upper()
 
-            except NoSuchElementException:
-                logger.warning("Could not find video element to determine win status")
+            if "NEXT STEPS" in button_text:
+                logger.info("🎉 WINNER! 🎉")
+                is_winner = True
+            elif "LEARN MORE" in button_text:
+                logger.info("Not a winner this time")
+                is_winner = False
+            else:
+                logger.warning(f"Unknown button text found after watching video: {button_text}")
+                save_screenshot_with_timestamp(driver, "error")
+                is_winner = False
 
-            # Click learn more button
-            learn_more_button.click()
+            screenshot_prefix = "winner" if is_winner else "non_winner"
+            save_screenshot_with_timestamp(driver, screenshot_prefix)
+
+            logger.info(f"Clicking '{button_text}' button...")
+            button_element.click()
             time.sleep(6)
 
-            # Verify final URL
-            if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
-                error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
-                logger.error(error_msg)
-                raise Exception(error_msg)
+            # Commented out URL verification because we don't know what the winning URL is
+            # if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
+            # error_msg = f"Unexpected final URL. Expected: https://gmfreegroceries.ca/Thank-you*, Got: {driver.current_url}"
+            # save_screenshot_with_timestamp(driver, "error")
+            # logger.error(error_msg)
+            # raise Exception(error_msg)
 
-            logger.info("Successfully clicked on 'LEARN MORE' button")
+            logger.info(f"Successfully clicked on '{button_text}' button")
+            save_screenshot_with_timestamp(driver, "Winner_Next_Steps_Page")
             form_submitted_successfully = True
 
         except TimeoutException:
             logger.error("Timeout waiting for results page")
+            save_screenshot_with_timestamp(driver, "error")
 
             # Check for error messages
             try:
@@ -215,3 +249,5 @@ def submit_form(data):
                 logger.info("WebDriver session closed")
             except Exception as e:
                 logger.warning(f"Error closing WebDriver: {e}")
+
+        return is_winner
