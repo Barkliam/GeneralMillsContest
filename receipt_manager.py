@@ -1,5 +1,6 @@
 import logging
 import os
+import random
 import shutil
 
 logger = logging.getLogger(__name__)
@@ -35,3 +36,29 @@ class ReceiptManager:
         destination_path = os.path.join(self.used_dir, self.current_receipt)
         shutil.move(current_path, destination_path)
         logger.info(f"Moved: {self.current_receipt}  --->  {destination_path}")
+
+    @staticmethod
+    def get_dummy_receipt(dummy_dir: str = "data/dummy_receipts") -> str:
+        logger.info(f"Attempting to get dummy receipt from: {dummy_dir}")
+
+        if not os.path.exists(dummy_dir):
+            logger.error(f"Dummy receipts directory not found: {dummy_dir}")
+            raise FileNotFoundError(f"Dummy receipts directory not found: {dummy_dir}")
+
+        if not os.path.isdir(dummy_dir):
+            logger.error(f"Path exists but is not a directory: {dummy_dir}")
+            raise FileNotFoundError(f"Path exists but is not a directory: {dummy_dir}")
+
+        # Get all files in the dummy receipts directory
+        receipt_files = [f for f in os.listdir(dummy_dir) if os.path.isfile(os.path.join(dummy_dir, f))]
+
+        if not receipt_files:
+            logger.error(f"No receipt files found in dummy receipts directory: {dummy_dir}")
+            raise FileNotFoundError(f"No receipt files found in dummy receipts directory: {dummy_dir}")
+
+        # Randomly select a receipt file
+        selected_receipt = random.choice(receipt_files)
+        receipt_path = os.path.abspath(os.path.join(dummy_dir, selected_receipt))
+
+        logger.info(f"Selected dummy receipt: {selected_receipt} (from {len(receipt_files)} available)")
+        return receipt_path
