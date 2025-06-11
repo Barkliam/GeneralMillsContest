@@ -180,7 +180,7 @@ def submit_form(data):
 
             logger.info(f"Clicking '{button_text}' button...")
             button_element.click()
-            time.sleep(25)
+            time.sleep(45)
 
             # Commented out URL verification because we don't know what the winning URL is
             # if not driver.current_url.startswith("https://gmfreegroceries.ca/Thank-you"):
