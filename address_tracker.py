@@ -68,7 +68,7 @@ def get_real_address():
                     logger.debug("Skipping empty row in addresses CSV")
                     continue
 
-                usage_count = int(row.get("TimesUsed", 0))
+                usage_count = int(str(row.get("TimesUsed", 0)).strip())
                 last_used_datetime = datetime.fromisoformat(row.get("LastUsedDateTime", ""))
 
                 if selected_address is None and usage_count < MAX_USES_PER_ADDRESS and last_used_datetime < twenty_four_hours_ago:
