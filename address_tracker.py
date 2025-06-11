@@ -2,6 +2,8 @@ import csv
 import logging
 import os
 
+from main import REAL_ADDRESS_CSV_PATH, DUMMY_ADDRESS_CSV_PATH, MAX_USES_PER_ADDRESS
+
 # Conditional import for file locking
 if os.name == 'nt':  # Windows
     import msvcrt
@@ -10,10 +12,6 @@ else:  # POSIX (Linux, macOS)
 from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
-
-REAL_ADDRESS_CSV_PATH = "data/real_addresses.csv"
-DUMMY_ADDRESS_CSV_PATH = "data/dummy_addresses.csv"
-MAX_USES = 10
 
 
 class LockedFile:
@@ -73,7 +71,7 @@ def get_real_address():
                 usage_count = int(row.get("TimesUsed", 0))
                 last_used_datetime = datetime.fromisoformat(row.get("LastUsedDateTime", ""))
 
-                if selected_address is None and usage_count < MAX_USES and last_used_datetime < twenty_four_hours_ago:
+                if selected_address is None and usage_count < MAX_USES_PER_ADDRESS and last_used_datetime < twenty_four_hours_ago:
                     # Select this address
                     row["TimesUsed"] = str(usage_count + 1)
                     row["LastUsedDateTime"] = now.isoformat()

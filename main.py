@@ -8,6 +8,12 @@ import schedule
 from address_tracker import get_real_address
 from form_filler import submit_form
 
+PREFERRED_STORE = "Walmart"
+MAX_USES_PER_ADDRESS = 10
+REAL_ADDRESS_CSV_PATH = "data/real_addresses.csv"
+DUMMY_ADDRESS_CSV_PATH = "data/dummy_addresses.csv"
+CONTEST_URL= "https://gmfreegroceries.ca/Enter"
+
 # Setup logging to file and console
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

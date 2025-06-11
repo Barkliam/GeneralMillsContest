@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from main import PREFERRED_STORE, CONTEST_URL
 from receipt_manager import ReceiptManager
 
 receipt_manager = ReceiptManager()
@@ -76,17 +77,14 @@ def save_screenshot_with_timestamp(driver: webdriver.Firefox, prefix: str = "scr
 
 def submit_form(data):
     """Submit the contest entry form with provided data."""
-    url = "https://gmfreegroceries.ca/Enter"
-    preferred_store = "Walmart"  # Change this to whichever store you want gift cards from
-
     driver = None
     form_submitted_successfully = False
     is_winner = False
 
     try:
         driver = get_firefox_driver()
-        logger.info(f"Navigating to: {url}")
-        driver.get(url)
+        logger.info(f"Navigating to: {CONTEST_URL}")
+        driver.get(CONTEST_URL)
 
         # Wait for page to load completely
         WebDriverWait(driver, 25).until(expected_conditions.presence_of_element_located((By.ID, "dnn1537FirstName")))
@@ -131,7 +129,7 @@ def submit_form(data):
 
         # Wait for and click the store option
         store_element = WebDriverWait(driver, 10).until(
-            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{preferred_store}')]")))
+            expected_conditions.element_to_be_clickable((By.XPATH, f"//*[contains(text(), '{PREFERRED_STORE}')]")))
         store_element.click()
 
         # Upload receipt
