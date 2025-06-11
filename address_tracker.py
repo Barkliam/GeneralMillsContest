@@ -40,6 +40,13 @@ class LockedFile:
             self.file.close()
 
 
+def is_empty_row(row):
+    """Check if a CSV row is completely empty (all values are empty strings or None)"""
+    if not row:
+        return True
+    return all(not value or not str(value).strip() for value in row.values())
+
+
 def get_real_address():
     logger.info("attempting to get real address...")
     if not os.path.exists(REAL_ADDRESS_CSV_PATH):
@@ -58,6 +65,11 @@ def get_real_address():
             rows = list(reader)
 
             for row in rows:
+                # Skip completely empty rows
+                if is_empty_row(row):
+                    logger.debug("Skipping empty row in addresses CSV")
+                    continue
+
                 usage_count = int(row.get("TimesUsed", 0))
                 last_used_datetime = datetime.fromisoformat(row.get("LastUsedDateTime", ""))
 
@@ -104,15 +116,23 @@ def get_dummy_address():
             fieldnames = reader.fieldnames
             rows = list(reader)
 
-            if not rows:
-                raise Exception("Dummy CSV file is empty")
+            # Filter out completely empty rows
+            non_empty_rows = []
+            for row in rows:
+                if not is_empty_row(row):
+                    non_empty_rows.append(row)
+                else:
+                    logger.debug("Skipping empty row in dummy addresses CSV")
+
+            if not non_empty_rows:
+                raise Exception("Dummy CSV file contains no valid (non-empty) rows")
 
             # Find the address with the oldest LastUsedDateTime
             oldest_address = None
             oldest_datetime = None
             oldest_index = -1
 
-            for i, row in enumerate(rows):
+            for i, row in enumerate(non_empty_rows):
                 try:
                     last_used_str = row.get("LastUsedDateTime", "")
                     if not last_used_str:
@@ -137,14 +157,14 @@ def get_dummy_address():
                 raise Exception("No valid dummy address found")
 
             # Update the LastUsedDateTime for the selected address
-            rows[oldest_index]["LastUsedDateTime"] = now.isoformat()
+            non_empty_rows[oldest_index]["LastUsedDateTime"] = now.isoformat()
 
-            # Write updates back to file
+            # Write updates back to file (only non-empty rows)
             csvfile.seek(0)
             csvfile.truncate()
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(rows)
+            writer.writerows(non_empty_rows)
 
             logger.info(
                 f"Selected dummy address: {oldest_address.get('Email', 'unknown')} with previous LastUsedDateTime: {oldest_datetime}, updated to: {now.isoformat()}")
