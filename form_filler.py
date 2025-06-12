@@ -11,8 +11,9 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
+from dateutil import parser
 
-from main import PREFERRED_STORE, CONTEST_URL
+from config import PREFERRED_STORE, CONTEST_URL
 from receipt_manager import ReceiptManager
 
 receipt_manager = ReceiptManager()
@@ -118,8 +119,8 @@ def submit_form(data):
         driver.find_element(By.ID, "dnn1537Phone").send_keys(data['Phone'])
 
         # Format birthdate
-        raw_birthdate = data['Birthdate']  # e.g., "2001-03-01"
-        parsed_date = datetime.strptime(raw_birthdate, "%Y-%m-%d")
+        raw_birthdate = data['Birthdate']  # e.g., "2001-03-01" or "1/4/1969"
+        parsed_date = parser.parse(raw_birthdate)
         formatted_date = parsed_date.strftime("%d/%m/%Y")  # "01/03/2001"
         driver.find_element(By.ID, "dnn1537Birthdate").send_keys(formatted_date)
 

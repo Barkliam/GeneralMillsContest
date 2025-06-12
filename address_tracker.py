@@ -2,7 +2,7 @@ import csv
 import logging
 import os
 
-from main import REAL_ADDRESS_CSV_PATH, DUMMY_ADDRESS_CSV_PATH, MAX_USES_PER_ADDRESS
+from config import REAL_ADDRESS_CSV_PATH, DUMMY_ADDRESS_CSV_PATH, MAX_USES_PER_ADDRESS
 
 # Conditional import for file locking
 if os.name == 'nt':  # Windows

@@ -5,14 +5,10 @@ from datetime import datetime
 
 import schedule
 
+from config import REAL_ADDRESS_CSV_PATH, DUMMY_ADDRESS_CSV_PATH, MAX_USES_PER_ADDRESS, PREFERRED_STORE, CONTEST_URL, \
+    SCHEDULED_SUBMISSION_TIMES
 from address_tracker import get_real_address
 from form_filler import submit_form
-
-PREFERRED_STORE = "Walmart"
-MAX_USES_PER_ADDRESS = 10
-REAL_ADDRESS_CSV_PATH = "data/real_addresses.csv"
-DUMMY_ADDRESS_CSV_PATH = "data/dummy_addresses.csv"
-CONTEST_URL= "https://gmfreegroceries.ca/Enter"
 
 # Setup logging to file and console
 logger = logging.getLogger()
@@ -61,9 +57,8 @@ def main():
 
     #form_submission_job()  # uncomment to enter immediately
 
-    schedule.every().day.at("06:01").do(form_submission_job)
-    schedule.every().day.at("07:01").do(form_submission_job)
-    schedule.every().day.at("08:01").do(form_submission_job)
+    for time_str in SCHEDULED_SUBMISSION_TIMES:
+        schedule.every().day.at(time_str).do(form_submission_job)
 
     if not schedule.jobs:
         logging.info("No scheduled jobs found. Exiting.")
