@@ -116,7 +116,13 @@ def submit_form(data):
         driver.find_element(By.ID, "dnn1537PostalCode").send_keys(formatted_postal_code)
 
         driver.find_element(By.ID, "dnn1537Email").send_keys(data['Email'])
-        driver.find_element(By.ID, "dnn1537Phone").send_keys(data['Phone'])
+
+        phone_field = driver.find_element(By.ID, "dnn1537Phone")
+        phone_number = data['Phone']
+        for char in phone_number:
+            phone_field.send_keys(char)
+            time.sleep(0.1)
+
 
         # Format birthdate
         raw_birthdate = data['Birthdate']  # e.g., "2001-03-01" or "1/4/1969"
